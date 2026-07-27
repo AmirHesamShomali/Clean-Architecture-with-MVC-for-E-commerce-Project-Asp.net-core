@@ -1,0 +1,22 @@
+## Visual Studio Folders
+.vs/
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## User-specific files
+*.rsuser
+*.suo
+*.user
+
+## Build results
+[Dd]ebug/
+[Rr]elease/
+
+## OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
