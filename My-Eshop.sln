@@ -16,13 +16,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "presentation", "presentatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyEshop-MVC", "MyEshop-MVC\MyEshop-MVC.csproj", "{6D2E2325-BD6A-42B5-A815-EE319DF9CCEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyEshop-Application", "MyEshop-Application\MyEshop-Application.csproj", "{26C82A6C-F0F0-4EC7-994F-0EF3429B04B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyEshop_Application", "MyEshop-Application\MyEshop_Application.csproj", "{26C82A6C-F0F0-4EC7-994F-0EF3429B04B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyEshop-Domain", "MyEshop-Domain\MyEshop-Domain.csproj", "{A2C90005-4942-403E-ABBD-DDA45F4543A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyEshop-Domain", "MyEshop-Domain\MyEshop-Domain.csproj", "{A2C90005-4942-403E-ABBD-DDA45F4543A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyEshop-Infrastructure", "MyEshop-Infrastructure\MyEshop-Infrastructure.csproj", "{0FD7B0C4-FCB1-4EED-9D8A-8B6AA921BEB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyEshop-Infrastructure", "MyEshop-Infrastructure\MyEshop-Infrastructure.csproj", "{0FD7B0C4-FCB1-4EED-9D8A-8B6AA921BEB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyEshop-Persistence", "MyEshop-Persistence\MyEshop-Persistence.csproj", "{356A2C25-30C8-4630-BC75-A16921241CF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyEshop-Persistence", "MyEshop-Persistence\MyEshop-Persistence.csproj", "{356A2C25-30C8-4630-BC75-A16921241CF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

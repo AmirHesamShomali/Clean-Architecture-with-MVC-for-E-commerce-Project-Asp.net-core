@@ -1,14 +1,75 @@
-﻿@{
+﻿@using MyEshop_Application.Services.Users.Queries.GetListUsers
+@model ResaultUserServices
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div style="margin-right:100px;margin-top:100px">
+<div id="manage_user_section" class="manage_user_section main_section">
+    <h4 class="text-center my-3">مدیریت کاربران</h4>
+    <div class="row justify-content-between">
+        <div class="col-10 col-md-6 col-lg-4">
+            <div class="input-group mb-3" style="direction: ltr;">
+                <input type="text" class="form-control" placeholder="قسمتی از نام یا نام خانوادگی را وارد کنید">
+                <span class="input-group-text">جستجو</span>
+            </div>
+        </div>
+        <div class="col-2 col-md-6 col-lg-4 d-flex flex-column align-items-end">
+            <button class="btn btn-success d-flex justify-content-center align-items-center"
+                    data-bs-toggle="modal" data-bs-target="#add_user_modal">
+                <i class="fas fa-plus text-light"></i>
+            </button>
+        </div>
+    </div>
+    <table class="table table-responsive text-center table-hover table-bordered">
+        <thead class="table-secondary">
+            <tr>
+                <th>#</th>
+                <th>نام و نام خانوادگی</th>
+                <th>ایمیل</th>
+                <th>عملیات</th>
+            </tr>
+        </thead>
+        <tbody>
+ 
 
-    hello world
-
-
+            @foreach(var i in Model.userDtos)
+            {
+            <tr>
+                <td>@i.Id</td>
+                <td>@i.FullName</td>
+                <td>@i.Email</td>
+                <td>
+                    <i class="fas fa-edit text-warning mx-1 hoverable_text pointer has_tooltip"
+                       title="جزئیات و ویرایش کاربر" data-bs-toggle="modal" data-bs-placement="top"
+                       data-bs-target="#add_user_modal"></i>
+                    <i class="fas fa-times text-danger mx-1 hoverable_text pointer has_tooltip"
+                       title="حذف کاربر" data-bs-toggle="tooltip" data-bs-placement="top"></i>
+                </td>
+            </tr>
+                
+            }
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+        <ul class="pagination dir_ltr">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 </div>
+
 
 
 
