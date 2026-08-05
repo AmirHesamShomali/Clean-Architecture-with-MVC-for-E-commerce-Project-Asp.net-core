@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <head>
@@ -119,18 +120,16 @@
                     <span class="hiddenable no_wrap font_08">مدیریت نحوه ارسال</span>
                 </li>
                 <!-- =================================== -->
+
                 <li class="py-1 text-start d-flex justify-content-center no_pointer no_hover ">
                     <span class="hiddenable no_wrap group_sidebar_title ">کاربران و همکاران</span>
                 </li>
-                <a href="/admin/users/index"> 
-
                 <li class="py-1 text-start pe-4 sidebar_menu_item">
                     <i class="ms-3 icon fas fa-users text-light"></i>
-                    <span class="hiddenable no_wrap font_08">مشاهده کاربران</span>
+                    <div class="hiddenable no_wrap font_08">مشاهده کاربران</div>
                 </li>
 
 
-                </a>
                 <li class="py-1 text-start pe-4 sidebar_menu_item" data-section-id="manage_role_section">
                     <i class="ms-3 icon fas fa-user-tag text-light"></i>
                     <span class="hiddenable no_wrap font_08">نقش ها</span>

@@ -1,5 +1,7 @@
-﻿@using MyEshop_Application.Services.Users.Queries.GetRoles;
-@model IEnumerable<RolesDto>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using MyEshop_Application.Services.Users.Commands.RegisterUser;
+@using MyEshop_Application.Services.Users.Queries.GetRoles;
+@model RequestRegisterService;
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -7,36 +9,46 @@
 <div class="container mt-5">
     <div class="card shadow-sm p-4" style="max-width: 500px; margin: auto;">
         <h3 class="mb-4 text-center">ثبت‌نام کاربر</h3>
-        <form>
+        <form method="post" asp-action="create" asp-controller="Users">
             <div class="mb-3">
                 <label class="form-label">نام و نام خانوادگی</label>
-                <input type="text" class="form-control" placeholder="مثال: علی علوی">
+                <input type="text" class="form-control" placeholder="مثال: علی علوی" asp-for="@Model.FullName">
+                <span asp-validation-for="@Model.FullName" class="text-danger text-center"></span>
             </div>
             <div class="mb-3">
                 <label class="form-label">ایمیل</label>
-                <input type="email" class="form-control" placeholder="example@mail.com">
+                <input type="email" class="form-control" asp-for="@Model.Email" placeholder="example@mail.com">
+                <span asp-validation-for="@Model.Email" class="text-danger text-center"></span>
             </div>
             <div class="mb-3">
                 <label class="form-label">رمز عبور</label>
-                <input type="password" class="form-control">
+                <input type="password" class="form-control" asp-for="@Model.Password">
+                <span asp-validation-for="@Model.Password" class="text-danger text-center"></span>
             </div>
             <div class="mb-3">
                 <label class="form-label">تکرار رمز عبور</label>
-                <input type="password" class="form-control">
+                <input type="password" class="form-control" asp-for="@Model.Repassword">
+                <span asp-validation-for="@Model.Repassword" class="text-danger text-center"></span>
             </div>
-            <div class="mb-3">
+@*             <div class="mb-3">
                 <label class="form-label">انتخاب نقش</label>
-                <select class="form-select">
-                    <option selected disabled>نقش خود را انتخاب کنید...</option>
-                    @foreach(var i in Model)
-                    {
-                    <option value="admin">@i.Name</option>
-                        
-                    }
+                <!-- asp-for باید روی خود select باشد و asp-items باید روی تگ select باشد -->
+                <select class="form-select" asp-for="roles" asp-items="@(ViewBag.Roles as SelectList)" multiple>
+                    <option value="">-- نقش‌ها را انتخاب کنید --</option>
                 </select>
-            </div>
+            </div> *@
 
             <button type="submit" class="btn btn-primary w-100 mt-3">ثبت اطلاعات</button>
+
+            <h1 class="text-danger text-center">
+                @ViewBag.Message
+            </h1>
         </form>
     </div>
+    @section Scripts
+    {
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    }
 </div>

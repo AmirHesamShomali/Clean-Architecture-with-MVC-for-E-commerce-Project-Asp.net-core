@@ -1,0 +1,32 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using MyEshop_Application.Services.Users.Commands.EditUser;
+@model ResaultEditUserService
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+
+}
+<div class="container mt-5">
+    <div class="card shadow-sm p-4" style="max-width: 500px; margin: auto;">
+        <h3 class="mb-4 text-center">ثبت‌نام کاربر</h3>
+        <form method="post" asp-action="Edit" asp-controller="Users">
+            <div class="mb-3">
+                <label class="form-label">نام و نام خانوادگی</label>
+                <input type="text" class="form-control" asp-for="@Model.user.FullName">
+                <span  class="text-danger text-center"></span>
+            </div>
+           
+            <button type="submit" class="btn btn-primary w-100 mt-3">ثبت اطلاعات</button>
+
+            <h1 class="text-danger text-center">
+                @ViewBag.Message
+            </h1>
+<div class="d-none" >
+    <input asp-for="@Model.user.Id" />
+    <input asp-for="@Model.user.Email" />
+    <input asp-for="@Model.user.Password" />
+
+</div>
+        </form>
+
+    </div>

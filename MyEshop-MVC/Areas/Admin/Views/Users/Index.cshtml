@@ -1,4 +1,5 @@
-﻿@using MyEshop_Application.Services.Users.Queries.GetListUsers
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using MyEshop_Application.Services.Users.Queries.GetListUsers
 @model ResaultUserServices
 @{
     ViewData["Title"] = "Index";
@@ -6,6 +7,9 @@
 }
 
 <div id="manage_user_section" class="manage_user_section main_section">
+    <h2 text-warning>
+        @ViewData["Message"]
+    </h2>
     <h4 class="text-center my-3">مدیریت کاربران</h4>
     <div class="row justify-content-between">
         <div class="col-10 col-md-6 col-lg-4">
@@ -15,10 +19,12 @@
             </div>
         </div>
         <div class="col-2 col-md-6 col-lg-4 d-flex flex-column align-items-end">
-            <button class="btn btn-success d-flex justify-content-center align-items-center"
-                    data-bs-toggle="modal" data-bs-target="#add_user_modal">
-                <i class="fas fa-plus text-light"></i>
-            </button>
+            <a asp-action="Create" asp-controller="Users">
+
+                <button class="btn btn-success d-flex justify-content-center align-items-center">
+                    <i class="fas fa-plus text-light"></i>
+                </button>
+            </a>
         </div>
     </div>
     <table class="table table-responsive text-center table-hover table-bordered">
@@ -31,23 +37,29 @@
             </tr>
         </thead>
         <tbody>
- 
 
-            @foreach(var i in Model.userDtos)
+
+            @foreach (var i in Model.userDtos)
             {
-            <tr>
-                <td>@i.Id</td>
-                <td>@i.FullName</td>
-                <td>@i.Email</td>
-                <td>
-                    <i class="fas fa-edit text-warning mx-1 hoverable_text pointer has_tooltip"
-                       title="جزئیات و ویرایش کاربر" data-bs-toggle="modal" data-bs-placement="top"
-                       data-bs-target="#add_user_modal"></i>
-                    <i class="fas fa-times text-danger mx-1 hoverable_text pointer has_tooltip"
-                       title="حذف کاربر" data-bs-toggle="tooltip" data-bs-placement="top"></i>
-                </td>
-            </tr>
-                
+                <tr>
+                    <td>@i.Id</td>
+                    <td>@i.FullName</td>
+                    <td>@i.Email</td>
+                    <td>
+                        <a asp-action="Edit" asp-controller="Users" asp-route-userid="@i.Id">
+
+                        <i class="fas fa-edit text-warning mx-1 hoverable_text pointer has_tooltip"
+                           title="جزئیات و ویرایش کاربر" data-bs-toggle="modal"></i>
+                        </a>
+                        <a asp-action="Delete" asp-controller="Users" asp-route-userid="@i.Id" >
+                            <i class="fas fa-times text-danger mx-1 hoverable_text pointer has_tooltip"
+                               title="حذف کاربر"></i>
+
+
+                        </a>
+                    </td>
+                </tr>
+
             }
         </tbody>
     </table>
