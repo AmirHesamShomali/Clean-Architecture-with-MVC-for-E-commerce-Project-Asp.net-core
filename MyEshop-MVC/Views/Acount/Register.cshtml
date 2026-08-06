@@ -1,0 +1,62 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using MyEshop_Application.Services.Users.Commands.RegisterUser;
+@model RequestRegisterService
+@{
+    ViewData["Title"] = "ثبت نام ";
+}
+
+<main class="client-page">
+    <div class="container-content">
+
+        <header><h2> ثبت نام </h2></header>
+
+        <div class="form-layer">
+            <h1 class="text-danger text-center">
+                @ViewBag.Message
+            </h1>
+            <form method="post" asp-action="Register" asp-controller="Acount" >
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="password"><i class="zmdi zmdi-lock"></i></span>
+                    <input type="text" class="form-control" placeholder="نام کاربری " aria-describedby="FullName" asp-for="@Model.FullName">
+
+                </div>
+                <span asp-validation-for="@Model.FullName" class="text-danger text-center"></span>
+
+                <div class="input-group mt-5">
+                    <span class="input-group-addon" id="email-address"><i class="zmdi zmdi-email"></i></span>
+                    <input  type="text" class="form-control" placeholder="ایمیل" aria-describedby="email-address" asp-for="@Model.Email">
+     
+                </div>
+                <span asp-validation-for="@Model.Email" class="text-danger text-center"></span>
+
+                <div class="input-group mt-5">
+                    <span class="input-group-addon" id="password"><i class="zmdi zmdi-lock"></i></span>
+                    <input type="password" class="form-control" placeholder="رمز عبور " aria-describedby="password" asp-for="@Model.Password">
+                   
+                </div>
+                <span asp-validation-for="@Model.Password" class="text-danger text-center"></span>
+
+                <div class="input-group mt-5">
+                    <span class="input-group-addon" id="password"><i class="zmdi zmdi-lock"></i></span>
+                    <input type="password" class="form-control" placeholder="تکرار رمز عبور " aria-describedby="password" asp-for="@Model.Repassword">
+                </div>
+                <span asp-validation-for="@Model.Repassword" class="text-danger text-center"></span>
+
+                <div class="remember-me mt-5">
+                    <label><input type="checkbox" name="">  مرا بخاطر بسپار </label>
+                </div>
+                <p class="text-info text-center">
+                    <a >
+                        قبلا ثبت نام کرده ام
+
+                    </a>
+                </p>
+
+                <button class="btn btn-success"> ورود به سایت </button>
+
+            </form>
+        </div>
+
+    </div>
+</main>

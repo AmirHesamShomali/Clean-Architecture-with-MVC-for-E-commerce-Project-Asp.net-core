@@ -59,7 +59,6 @@ namespace EndPointStore.Site.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
-        [HttpDelete]
             public IActionResult Delete(int userid)
             {
                 var resault=_deleteUserService.DeleteService(userid);

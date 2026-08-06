@@ -74,6 +74,18 @@
                     <li class="nav-item"><a href="blog.html" class="nav-link">بلاگ فروت لند</a></li>
                     <li class="nav-item"><a href="contact.html" class="nav-link">تماس با ما</a></li>
                     <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item"><a class="nav-link">@User.Identity.Name </a></li>
+                        <li class="nav-item"><a class="nav-link" asp-action="logout" asp-controller="acount">خروج</a></li>
+                    }
+                    else
+                    {
+                        <li class="nav-item"><a class="nav-link" asp-controller="Acount" asp-action="Register">ثبت نام</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Acount" asp-action="login">ورود</a></li>
+                    }
+
+
                 </ul>
             </div>
         </div>

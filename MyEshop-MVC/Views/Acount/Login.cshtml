@@ -1,0 +1,39 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Services.Users.Commands.LoginUser
+@model LoginViewModel;
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+<main class="client-page">
+        <header><h2> ورود به سایت  </h2></header>
+
+        <div class="form-layer">
+
+            <form method="post" asp-action="Login" asp-controller="Acount" >
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="email-address"><i class="zmdi zmdi-email"></i></span>
+                    <input asp-for="@Model.Email"  type="text" class="form-control" placeholder="ایمیل" aria-describedby="email-address">
+
+                </div>
+                <span asp-validation-for="@Model.Email" class="text-danger" style="margin-right:120px"></span>
+
+                <div class="input-group">
+                    <span class="input-group-addon" id="password"><i class="zmdi zmdi-lock"></i></span>
+                <input asp-for="@Model.Password" type="password" class="form-control" placeholder="رمز عبور " aria-describedby="password">
+
+                </div>
+            <span asp-validation-for="@Model.Password" class="text-danger" style="margin-right:120px"></span>
+                <div class="remember-me">
+                    <label><input asp-for="@Model.Rememberme" type="checkbox" name="">  مرا بخاطر بسپار </label>
+                </div>
+
+                <button class="btn btn-success"> ورود به سایت </button>
+
+            </form>
+        </div>
+
+    </div>
+</main>

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using MyEshop_Application.Interfaces.Contexts;
@@ -7,6 +8,7 @@ using MyEshop_Application.Services.Users.Commands.RegisterUser;
 using MyEshop_Application.Services.Users.Queries.GetListUsers;
 using MyEshop_Application.Services.Users.Queries.GetRoles;
 using MyEshop_Persistence;
+using Services.Users.Commands.LoginUser;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,9 +16,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IEditUserService,EditUserService>();
 builder.Services.AddScoped<IGetUserServices,UserServices>();
+builder.Services.AddScoped<ILoginUserService, LoginUserService>();
 builder.Services.AddScoped<IRegisterUserService, RegisterUserService>();
 builder.Services.AddScoped<IDeleteUserService, DeleteUserService>();
-
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
+{
+    option.LoginPath = "/Acount/Login";
+    option.LogoutPath = "/Acount/logout";
+    option.ExpireTimeSpan = TimeSpan.FromDays(5);
+});
 
 builder.Services.AddScoped<IDatabaseContext, DatabaseContext>();
 builder.Services.AddDbContext<DatabaseContext>(option =>
