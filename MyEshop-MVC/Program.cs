@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using MyEshop_Application.Interfaces.Contexts;
+using MyEshop_Application.Interfaces.IFacedPattern;
+using MyEshop_Application.Services.Products.FacedPattern;
 using MyEshop_Application.Services.Users.Commands.DeleteUsers;
 using MyEshop_Application.Services.Users.Commands.EditUser;
 using MyEshop_Application.Services.Users.Commands.RegisterUser;
@@ -19,6 +21,7 @@ builder.Services.AddScoped<IGetUserServices,UserServices>();
 builder.Services.AddScoped<ILoginUserService, LoginUserService>();
 builder.Services.AddScoped<IRegisterUserService, RegisterUserService>();
 builder.Services.AddScoped<IDeleteUserService, DeleteUserService>();
+builder.Services.AddScoped<IProductFacad, ProductFacad>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
 {
     option.LoginPath = "/Acount/Login";
@@ -63,6 +66,8 @@ app.UseEndpoints(endpoints =>
       pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
     );
 });
+
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

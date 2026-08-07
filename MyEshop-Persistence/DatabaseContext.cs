@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyEshop_Application.Interfaces.Contexts;
+using MyEshop_Domain.Entities.Products;
 using MyEshop_Domain.Entities.Users;
 using System;
 using System.Collections.Generic;
@@ -21,8 +22,11 @@ namespace MyEshop_Persistence
 
         public DbSet<UserinRole> UserinRoles { get; set; }
 
+        public DbSet<Category> Category { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
            modelBuilder.Entity<Role>().HasData(new Role()
            {
                Id = 1,
@@ -30,7 +34,7 @@ namespace MyEshop_Persistence
            },new Role
            {
                Id=2,
-               Name="Operator"
+               Name="Operator" 
            },new Role
            {
                Id=3,

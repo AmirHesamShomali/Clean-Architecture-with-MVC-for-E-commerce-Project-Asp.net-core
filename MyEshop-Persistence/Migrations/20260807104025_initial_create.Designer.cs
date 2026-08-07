@@ -11,8 +11,8 @@ using MyEshop_Persistence;
 namespace MyEshop_Persistence.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20260731151626_initial-DbMig-Users")]
-    partial class initialDbMigUsers
+    [Migration("20260807104025_initial_create")]
+    partial class initial_create
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,31 @@ namespace MyEshop_Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("MyEshop_Domain.Entities.Products.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ParentCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("parentcategory_id")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentCategoryId");
+
+                    b.ToTable("Category");
+                });
 
             modelBuilder.Entity("MyEshop_Domain.Entities.Users.Role", b =>
                 {
@@ -39,6 +64,23 @@ namespace MyEshop_Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Operator"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Customer"
+                        });
                 });
 
             modelBuilder.Entity("MyEshop_Domain.Entities.Users.User", b =>
@@ -95,6 +137,15 @@ namespace MyEshop_Persistence.Migrations
                     b.ToTable("UserinRoles");
                 });
 
+            modelBuilder.Entity("MyEshop_Domain.Entities.Products.Category", b =>
+                {
+                    b.HasOne("MyEshop_Domain.Entities.Products.Category", "ParentCategory")
+                        .WithMany("sub_categories")
+                        .HasForeignKey("ParentCategoryId");
+
+                    b.Navigation("ParentCategory");
+                });
+
             modelBuilder.Entity("MyEshop_Domain.Entities.Users.UserinRole", b =>
                 {
                     b.HasOne("MyEshop_Domain.Entities.Users.Role", "Role")
@@ -112,6 +163,11 @@ namespace MyEshop_Persistence.Migrations
                     b.Navigation("Role");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("MyEshop_Domain.Entities.Products.Category", b =>
+                {
+                    b.Navigation("sub_categories");
                 });
 
             modelBuilder.Entity("MyEshop_Domain.Entities.Users.Role", b =>

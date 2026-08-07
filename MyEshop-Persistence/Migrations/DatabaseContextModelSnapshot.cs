@@ -21,6 +21,31 @@ namespace MyEshop_Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("MyEshop_Domain.Entities.Products.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ParentCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("parentcategory_id")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentCategoryId");
+
+                    b.ToTable("Category");
+                });
+
             modelBuilder.Entity("MyEshop_Domain.Entities.Users.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -109,6 +134,15 @@ namespace MyEshop_Persistence.Migrations
                     b.ToTable("UserinRoles");
                 });
 
+            modelBuilder.Entity("MyEshop_Domain.Entities.Products.Category", b =>
+                {
+                    b.HasOne("MyEshop_Domain.Entities.Products.Category", "ParentCategory")
+                        .WithMany("sub_categories")
+                        .HasForeignKey("ParentCategoryId");
+
+                    b.Navigation("ParentCategory");
+                });
+
             modelBuilder.Entity("MyEshop_Domain.Entities.Users.UserinRole", b =>
                 {
                     b.HasOne("MyEshop_Domain.Entities.Users.Role", "Role")
@@ -126,6 +160,11 @@ namespace MyEshop_Persistence.Migrations
                     b.Navigation("Role");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("MyEshop_Domain.Entities.Products.Category", b =>
+                {
+                    b.Navigation("sub_categories");
                 });
 
             modelBuilder.Entity("MyEshop_Domain.Entities.Users.Role", b =>

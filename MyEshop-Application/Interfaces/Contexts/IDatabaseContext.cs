@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyEshop_Domain.Entities.Products;
 using MyEshop_Domain.Entities.Users;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,9 @@ namespace MyEshop_Application.Interfaces.Contexts
          DbSet<Role> Roles { get; set; }
 
          DbSet<UserinRole> UserinRoles { get; set; }
+
+         DbSet<Category> Category { get; set; }
+
 
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();
