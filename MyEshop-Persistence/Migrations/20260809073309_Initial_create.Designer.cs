@@ -11,8 +11,8 @@ using MyEshop_Persistence;
 namespace MyEshop_Persistence.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20260807104025_initial_create")]
-    partial class initial_create
+    [Migration("20260809073309_Initial_create")]
+    partial class Initial_create
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,6 +47,52 @@ namespace MyEshop_Persistence.Migrations
                     b.HasIndex("ParentCategoryId");
 
                     b.ToTable("Category");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "سبزیجات"
+                        });
+                });
+
+            modelBuilder.Entity("MyEshop_Domain.Entities.Products.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            Description = "بسیار عالی و درجه یک",
+                            Name = "هویج",
+                            Price = 120000f
+                        });
                 });
 
             modelBuilder.Entity("MyEshop_Domain.Entities.Users.Role", b =>
@@ -144,6 +190,17 @@ namespace MyEshop_Persistence.Migrations
                         .HasForeignKey("ParentCategoryId");
 
                     b.Navigation("ParentCategory");
+                });
+
+            modelBuilder.Entity("MyEshop_Domain.Entities.Products.Product", b =>
+                {
+                    b.HasOne("MyEshop_Domain.Entities.Products.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("MyEshop_Domain.Entities.Users.UserinRole", b =>

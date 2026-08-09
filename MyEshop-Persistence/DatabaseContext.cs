@@ -24,10 +24,32 @@ namespace MyEshop_Persistence
 
         public DbSet<Category> Category { get; set; }
 
+        public DbSet<Product> Products { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Product>()
+             .HasOne(p => p.Category)
+            .WithMany()
+            .HasForeignKey(p => p.CategoryId);
 
-           modelBuilder.Entity<Role>().HasData(new Role()
+            modelBuilder.Entity<Product>().HasData(new Product()
+            {
+                Id = 1,
+                Name = "هویج",
+                Price=120000,
+                Description="بسیار عالی و درجه یک",
+                CategoryId=1,
+            });
+            modelBuilder.Entity<Category>().HasData(new Category()
+            {
+                Id=1,
+                Name="سبزیجات"
+            });
+           
+
+            modelBuilder.Entity<Role>().HasData(new Role()
            {
                Id = 1,
                Name = "Admin",

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MyEshop_Application.Interfaces.Contexts;
 using MyEshop_MVC.Models;
 using System.Diagnostics;
 
@@ -8,18 +9,28 @@ namespace MyEshop_MVC.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IDatabaseContext _databaseContext;
+
+        public HomeController(ILogger<HomeController> logger, IDatabaseContext databaseContext)
         {
             _logger = logger;
+            _databaseContext = databaseContext;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var products = _databaseContext.Products.Select(p => new ProductViewModel()
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Price = p.Price,
+            }).ToList();
+            return View(products);
         }
 
         public IActionResult Privacy()
         {
+            
             return View();
         }
 

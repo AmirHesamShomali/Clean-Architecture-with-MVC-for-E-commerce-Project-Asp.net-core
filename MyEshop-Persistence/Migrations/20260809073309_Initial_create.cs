@@ -7,7 +7,7 @@
 namespace MyEshop_Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class initial_create : Migration
+    public partial class Initial_create : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -61,6 +61,28 @@ namespace MyEshop_Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<float>(type: "real", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Products_Category_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Category",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserinRoles",
                 columns: table => new
                 {
@@ -89,6 +111,11 @@ namespace MyEshop_Persistence.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Category",
+                columns: new[] { "Id", "Name", "ParentCategoryId", "parentcategory_id" },
+                values: new object[] { 1, "سبزیجات", null, null });
+
+            migrationBuilder.InsertData(
                 table: "Roles",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
@@ -98,10 +125,20 @@ namespace MyEshop_Persistence.Migrations
                     { 3, "Customer" }
                 });
 
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "CategoryId", "Description", "Name", "Price" },
+                values: new object[] { 1, 1, "بسیار عالی و درجه یک", "هویج", 120000f });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Category_ParentCategoryId",
                 table: "Category",
                 column: "ParentCategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_CategoryId",
+                table: "Products",
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserinRoles_RoleId",
@@ -118,10 +155,13 @@ namespace MyEshop_Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Category");
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "UserinRoles");
+
+            migrationBuilder.DropTable(
+                name: "Category");
 
             migrationBuilder.DropTable(
                 name: "Roles");
