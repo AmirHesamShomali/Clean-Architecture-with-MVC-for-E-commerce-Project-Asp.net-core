@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Internal;
 using MyEshop_Application.Services.Users.Commands.DeleteUsers;
@@ -9,6 +10,7 @@ using MyEshop_Application.Services.Users.Queries.GetRoles;
 
 namespace EndPointStore.Site.Areas.Admin.Controllers
 {
+    [Authorize(Policy = "AdminOnly")]
     [Area("Admin")]
     public class UsersController : Controller
     {
@@ -27,6 +29,7 @@ namespace EndPointStore.Site.Areas.Admin.Controllers
             _deleteUserService = deleteUserService;
             _editUserService = editUserService;
         }
+     
         public IActionResult Index(string searchkey, int page = 1)
         {
             var users = _userServices.Excute(new Request()

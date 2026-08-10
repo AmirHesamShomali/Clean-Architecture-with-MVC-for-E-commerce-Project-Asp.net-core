@@ -16,6 +16,7 @@ namespace MyEshop_Domain.Entities.Users
 
         public string Password { get; set; }
 
+        public bool IsAdmin { get; set; }
         public ICollection<UserinRole>? UserinRoles { get; set; }
     }
 }

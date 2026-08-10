@@ -42,6 +42,7 @@ public class RegisterUserService : IRegisterUserService
                 FullName = request.FullName,
                 Email = request.Email,
                 Password = request.Password,
+                IsAdmin = false,
                 UserinRoles = null
         };
 

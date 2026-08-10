@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyEshop_Application.Interfaces.Contexts;
+using MyEshop_Domain.Entities.Comment;
 using MyEshop_Domain.Entities.Products;
 using MyEshop_Domain.Entities.Users;
 using System;
@@ -25,6 +26,8 @@ namespace MyEshop_Persistence
         public DbSet<Category> Category { get; set; }
 
         public DbSet<Product> Products { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

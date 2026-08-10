@@ -58,7 +58,8 @@ namespace MyEshop_MVC.Controllers
                 var claims = new List<Claim>
                 {
             new Claim(ClaimTypes.NameIdentifier, resault.user.Id.ToString()),
-            new Claim(ClaimTypes.Name, resault.user.Email)
+            new Claim(ClaimTypes.Name, resault.user.Email),
+            new Claim("IsAdmin", resault.user.IsAdmin.ToString())
                };
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 

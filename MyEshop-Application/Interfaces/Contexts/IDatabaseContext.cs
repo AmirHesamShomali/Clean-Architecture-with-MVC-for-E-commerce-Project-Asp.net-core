@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyEshop_Domain.Entities.Comment;
 using MyEshop_Domain.Entities.Products;
 using MyEshop_Domain.Entities.Users;
 using System;
@@ -20,6 +21,7 @@ namespace MyEshop_Application.Interfaces.Contexts
          DbSet<Category> Category { get; set; }
 
          DbSet<Product> Products { get; set; }
+        DbSet<Comment> Comments { get; set; }
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();
         Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess,CancellationToken cancellationToken);

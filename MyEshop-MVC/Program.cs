@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using MyEshop_Application.Interfaces.Contexts;
 using MyEshop_Application.Interfaces.IFacedPattern;
+using MyEshop_Application.Services.Comments.Commands;
+using MyEshop_Application.Services.Comments.Queries;
 using MyEshop_Application.Services.Products.FacedPattern;
 using MyEshop_Application.Services.Users.Commands.DeleteUsers;
 using MyEshop_Application.Services.Users.Commands.EditUser;
@@ -21,6 +23,9 @@ builder.Services.AddScoped<IGetUserServices,UserServices>();
 builder.Services.AddScoped<ILoginUserService, LoginUserService>();
 builder.Services.AddScoped<IRegisterUserService, RegisterUserService>();
 builder.Services.AddScoped<IDeleteUserService, DeleteUserService>();
+builder.Services.AddScoped<IGetListComments,GetListComments>();
+builder.Services.AddScoped<IDeleteComment,DeleteComment>();
+builder.Services.AddScoped<IAddComment,AddComment>();
 builder.Services.AddScoped<IProductFacad, ProductFacad>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
 {
@@ -30,6 +35,10 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 });
 
 builder.Services.AddScoped<IDatabaseContext, DatabaseContext>();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy => policy.RequireClaim("IsAdmin", "True"));
+});
 builder.Services.AddDbContext<DatabaseContext>(option =>
 {
     option.UseSqlServer("Data Source=.;Initial Catalog=My_EshopCore_DB;TrustServerCertificate=True;Integrated security=true");
@@ -57,7 +66,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {

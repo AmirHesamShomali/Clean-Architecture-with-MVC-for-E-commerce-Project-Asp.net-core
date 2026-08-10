@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ProductViewModel>
+﻿@using MyEshop_Domain.Entities.Comment;
+@model IEnumerable<ProductViewModel>
 @{
     ViewData["Title"] = "Index";
 }
@@ -225,6 +226,9 @@
         <div class="row ftco-animate">
             <div class="col-md-12">
                 <div class="carousel-testimony owl-carousel">
+
+                    @foreach (var i in ViewBag.Comments)
+                    {
                     <div class="item">
                         <div class="testimony-wrap p-4 pb-5">
                             <div class="user-img mb-5" style="background-image: url(assets-page/pics/person_1.jpg);">
@@ -233,68 +237,13 @@
                                 </span>
                             </div>
                             <div class="text text-center">
-                                <p class="mb-5 pl-4 line">بسار تمیز و منصافانه</p>
-                                <p class="name">محمد معدلی</p>
-                                <span class="position">بسه بندی مناسب</span>
+                                    <p class="mb-5 pl-4 line">@i.Description</p>
+                                <p class="name">@i.Name</p>
                             </div>
                         </div>
                     </div>
-                    <div class="item">
-                        <div class="testimony-wrap p-4 pb-5">
-                            <div class="user-img mb-5" style="background-image: url(assets-page/pics/person_2.jpg);">
-                                <span class="quote d-flex align-items-center justify-content-center">
-                                    <i class="icon-quote-left"></i>
-                                </span>
-                            </div>
-                            <div class="text text-center">
-                                <p class="mb-5 pl-4 line">کیفیت منحصر </p>
-                                <p class="name">رضا دل آرام</p>
-                                <span class="position">طراحی کلی</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap p-4 pb-5">
-                            <div class="user-img mb-5" style="background-image: url(assets-page/pics/person_3.jpg);">
-                                <span class="quote d-flex align-items-center justify-content-center">
-                                    <i class="icon-quote-left"></i>
-                                </span>
-                            </div>
-                            <div class="text text-center">
-                                <p class="mb-5 pl-4 line">سلامتی حق شماست</p>
-                                <p class="name">آرین میرزایی</p>
-                                <span class="position">طراح</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap p-4 pb-5">
-                            <div class="user-img mb-5" style="background-image: url(assets-page/pics/person_4.jpg);">
-                                <span class="quote d-flex align-items-center justify-content-center">
-                                    <i class="icon-quote-left"></i>
-                                </span>
-                            </div>
-                            <div class="text text-center">
-                                <p class="mb-5 pl-4 line">کیفیت اتفاقی نیست</p>
-                                <p class="name">محمد نجات پور</p>
-                                <span class="position">توسعه دهنده وب</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap p-4 pb-5">
-                            <div class="user-img mb-5" style="background-image: url(assets-page/pics/person_1.jpg);">
-                                <span class="quote d-flex align-items-center justify-content-center">
-                                    <i class="icon-quote-left"></i>
-                                </span>
-                            </div>
-                            <div class="text text-center">
-                                <p class="mb-5 pl-4 line">تغییر مسیر زندگی</p>
-                                <p class="name">علی رضایی</p>
-                                <span class="position">آنالیز سیستم</span>
-                            </div>
-                        </div>
-                    </div>
+                      
+                    }
                 </div>
             </div>
         </div>

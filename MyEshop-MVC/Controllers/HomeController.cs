@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MyEshop_Application.Interfaces.Contexts;
 using MyEshop_MVC.Models;
 using System.Diagnostics;
@@ -25,6 +26,8 @@ namespace MyEshop_MVC.Controllers
                 Name = p.Name,
                 Price = p.Price,
             }).ToList();
+
+            ViewBag.Comments=_databaseContext.Comments.ToList();
             return View(products);
         }
 
