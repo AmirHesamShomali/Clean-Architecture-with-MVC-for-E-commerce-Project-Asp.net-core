@@ -1,7 +1,10 @@
-﻿using MyEshop_Application.Interfaces.Contexts;
+﻿using Microsoft.AspNetCore.Hosting;
+using MyEshop_Application.Interfaces.Contexts;
 using MyEshop_Application.Interfaces.IFacedPattern;
 using MyEshop_Application.Services.Products.Command.Addnewcategory;
+using MyEshop_Application.Services.Products.Command.AddProduct;
 using MyEshop_Application.Services.Products.Command.AddProducts;
+using MyEshop_Application.Services.Products.Command.EditProduct;
 using MyEshop_Application.Services.Products.Queries.GetCategories;
 using MyEshop_Application.Services.Products.Queries.GetProducts;
 using System;
@@ -15,9 +18,12 @@ namespace MyEshop_Application.Services.Products.FacedPattern
     public class ProductFacad : IProductFacad
     {
         private readonly IDatabaseContext _context;
-        public ProductFacad(IDatabaseContext context)
+
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public ProductFacad(IDatabaseContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         private Addcategory _addcategory;
@@ -32,8 +38,8 @@ namespace MyEshop_Application.Services.Products.FacedPattern
 
         public GetCategories GetCategories
         {
-            get{
-                return _GetCategories=_GetCategories ?? new GetCategories(_context);
+            get {
+                return _GetCategories = _GetCategories ?? new GetCategories(_context);
             }
         }
 
@@ -43,7 +49,7 @@ namespace MyEshop_Application.Services.Products.FacedPattern
         {
             get
             {
-                return _GetListProducts=_GetListProducts ?? new GetListProducts(_context);
+                return _GetListProducts = _GetListProducts ?? new GetListProducts(_context);
             }
         }
 
@@ -54,6 +60,27 @@ namespace MyEshop_Application.Services.Products.FacedPattern
             get
             {
                 return (_DeleteProducts = _DeleteProducts ?? new DeleteProducts(_context));
+            }
+        }
+
+        private AddProduct _AddProduct;
+
+        public AddProduct Addproduct
+        {
+            get
+            {
+                return (_AddProduct = _AddProduct ?? new AddProduct(_context, _webHostEnvironment));
+            }
+
+
+        }
+
+        private  EditProduct _Editproduct;
+        public EditProduct Editproduct
+        {
+            get
+            {
+                return (_Editproduct = _Editproduct ?? new EditProduct(_context, _webHostEnvironment));
             }
         }
     }

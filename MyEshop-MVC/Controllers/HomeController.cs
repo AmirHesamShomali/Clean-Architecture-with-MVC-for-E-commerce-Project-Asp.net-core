@@ -23,6 +23,7 @@ namespace MyEshop_MVC.Controllers
             var products = _databaseContext.Products.Select(p => new ProductViewModel()
             {
                 Id = p.Id,
+                PathImage = p.ImagePath,
                 Name = p.Name,
                 Price = p.Price,
             }).ToList();
@@ -35,6 +36,13 @@ namespace MyEshop_MVC.Controllers
         {
             
             return View();
+        }
+
+
+        public IActionResult Ditails(int productid)
+        {
+            var product = _databaseContext.Products.FirstOrDefault(p=>p.Id==productid);
+            return View(product);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

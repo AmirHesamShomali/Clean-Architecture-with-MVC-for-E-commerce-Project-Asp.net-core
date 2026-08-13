@@ -11,8 +11,8 @@ using MyEshop_Persistence;
 namespace MyEshop_Persistence.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20260810090052_Add_Comment_Entity")]
-    partial class Add_Comment_Entity
+    [Migration("20260811113451_Initial-create")]
+    partial class Initialcreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -90,6 +90,9 @@ namespace MyEshop_Persistence.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")

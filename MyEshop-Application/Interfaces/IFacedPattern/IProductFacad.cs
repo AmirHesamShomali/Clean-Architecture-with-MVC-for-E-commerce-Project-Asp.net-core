@@ -1,5 +1,7 @@
 ﻿using MyEshop_Application.Services.Products.Command.Addnewcategory;
+using MyEshop_Application.Services.Products.Command.AddProduct;
 using MyEshop_Application.Services.Products.Command.AddProducts;
+using MyEshop_Application.Services.Products.Command.EditProduct;
 using MyEshop_Application.Services.Products.Queries.GetCategories;
 using MyEshop_Application.Services.Products.Queries.GetProducts;
 using System;
@@ -18,8 +20,11 @@ namespace MyEshop_Application.Interfaces.IFacedPattern
 
         GetListProducts GetListProducts { get;}
 
-        DeleteProducts DeleteProducts { get;}   
+        DeleteProducts DeleteProducts { get;}
 
+        AddProduct Addproduct { get;}
+
+        EditProduct Editproduct { get;}
 
     }
 }

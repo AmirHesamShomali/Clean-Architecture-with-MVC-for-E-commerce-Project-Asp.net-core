@@ -1,0 +1,47 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using MyEshop_Domain.Entities.Products
+@model Product
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container mt-5">
+    <div class="card shadow-sm p-4" style="max-width: 500px; margin: auto;">
+        <h3 class="mb-4 text-center">‌اضافه کردن محصول</h3>
+        <form method="post" asp-action="Edit" asp-controller="Products" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label">نام محصول </label>
+                <input type="text" class="form-control" asp-for="@Model.Name">
+                <span class="text-danger text-center"></span>
+                <span class="text-danger text-center"></span>
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-label">قسمت توضیحات</label>
+                <input type="text" class="form-control" asp-for="@Model.Description">
+                <span class="text-danger text-center"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label"> عکس محصول</label>
+                <input class="form-control" asp-for="@Model.ImagePath">
+
+                <input type="file" class="form-control" name="imagefile">
+                <span class="text-danger text-center"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">قیمت</label>
+                <input type="text" class="form-control" asp-for="@Model.Price">
+                <span class="text-danger text-center"></span>
+            </div>
+            <input type="hidden" class="form-control" asp-for="@Model.Id">
+            <input type="hidden" class="form-control" asp-for="@Model.CategoryId">
+
+
+
+            <button type="submit" class="btn btn-primary w-100 mt-3">ثبت اطلاعات</button>
+        </form>
+
+    </div>
