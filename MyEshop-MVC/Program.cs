@@ -3,8 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using MyEshop_Application.Interfaces.Contexts;
 using MyEshop_Application.Interfaces.IFacedPattern;
+using MyEshop_Application.Services.Carts.Command;
+using MyEshop_Application.Services.Carts.Queries;
 using MyEshop_Application.Services.Comments.Commands;
 using MyEshop_Application.Services.Comments.Queries;
+using MyEshop_Application.Services.GetMenutem.Queries;
 using MyEshop_Application.Services.Products.FacedPattern;
 using MyEshop_Application.Services.Users.Commands.DeleteUsers;
 using MyEshop_Application.Services.Users.Commands.EditUser;
@@ -12,7 +15,9 @@ using MyEshop_Application.Services.Users.Commands.RegisterUser;
 using MyEshop_Application.Services.Users.Queries.GetListUsers;
 using MyEshop_Application.Services.Users.Queries.GetRoles;
 using MyEshop_Persistence;
+using Services.Carts.Command;
 using Services.Users.Commands.LoginUser;
+using static Services.Carts.Command.AddCart;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,8 +30,12 @@ builder.Services.AddScoped<IRegisterUserService, RegisterUserService>();
 builder.Services.AddScoped<IDeleteUserService, DeleteUserService>();
 builder.Services.AddScoped<IGetListComments,GetListComments>();
 builder.Services.AddScoped<IDeleteComment,DeleteComment>();
+builder.Services.AddScoped<IAddCart, AddCart>();
 builder.Services.AddScoped<IAddComment,AddComment>();
+builder.Services.AddScoped<IGetListCarts, GetListCarts>();
+builder.Services.AddScoped<IRemoveCart, RemoveCart>();
 builder.Services.AddScoped<IProductFacad, ProductFacad>();
+builder.Services.AddScoped<IGetMenuItem,GetMenuItem>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
 {
     option.LoginPath = "/Acount/Login";

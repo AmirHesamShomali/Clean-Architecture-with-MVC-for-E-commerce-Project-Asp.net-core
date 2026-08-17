@@ -16,6 +16,8 @@ namespace MyEshop_Domain.Entities.Products
 
         public string Description { get; set; }
 
+        public int Count { get; set; } = 1;
+
         public string? ImagePath { get; set; }
 
         public int CategoryId { get; set; }

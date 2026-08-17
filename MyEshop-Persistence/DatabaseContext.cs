@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyEshop_Application.Interfaces.Contexts;
+using MyEshop_Domain.Entities.Cart;
 using MyEshop_Domain.Entities.Comment;
 using MyEshop_Domain.Entities.Products;
 using MyEshop_Domain.Entities.Users;
@@ -29,6 +30,7 @@ namespace MyEshop_Persistence
 
         public DbSet<Comment> Comments { get; set; }
 
+        public DbSet<Cart> Cart { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

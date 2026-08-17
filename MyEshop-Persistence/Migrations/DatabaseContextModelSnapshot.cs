@@ -21,6 +21,34 @@ namespace MyEshop_Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("MyEshop_Domain.Entities.Cart.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
+
+                    b.Property<int>("Userid")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Userid");
+
+                    b.ToTable("Cart");
+                });
+
             modelBuilder.Entity("MyEshop_Domain.Entities.Comment.Comment", b =>
                 {
                     b.Property<int>("Id")
@@ -85,6 +113,9 @@ namespace MyEshop_Persistence.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -110,6 +141,7 @@ namespace MyEshop_Persistence.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
+                            Count = 1,
                             Description = "بسیار عالی و درجه یک",
                             Name = "هویج",
                             Price = 120000f
@@ -205,6 +237,17 @@ namespace MyEshop_Persistence.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserinRoles");
+                });
+
+            modelBuilder.Entity("MyEshop_Domain.Entities.Cart.Cart", b =>
+                {
+                    b.HasOne("MyEshop_Domain.Entities.Users.User", "User")
+                        .WithMany()
+                        .HasForeignKey("Userid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("MyEshop_Domain.Entities.Products.Category", b =>
