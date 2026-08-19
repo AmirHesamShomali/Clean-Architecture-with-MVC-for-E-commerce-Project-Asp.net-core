@@ -16,8 +16,8 @@
 	</div>
 </div>
 
-<form asp-action="index" asp-controller="Cart" asp-route-product_id="@Model.Id" method="post">
-	<input type="text" id="Emailuser" name="Emailuser" class="form-control input-number" value="@User.Identity.Name">
+<form asp-action="AddToCart" asp-controller="Cart" asp-route-product_id="@Model.Id" method="post">
+	<input type="text" id="Emailuser" name="Emailuser" class="form-control input-number d-none" value="@User.Identity.Name">
 <section class="ftco-section">
 	<div class="container">
 		<div class="row">

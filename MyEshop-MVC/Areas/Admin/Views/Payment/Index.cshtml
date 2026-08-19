@@ -1,38 +1,32 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@using MyEshop_Domain.Entities.Comment;
-@model IEnumerable<Comment>;
+﻿@using MyEshop_Domain.Entities.Payment;
+@model IEnumerable<Payment>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+
 }
 <div id="manage_user_section" class="manage_user_section main_section" style="margin-top:80px">
     <h2 text-warning>
         @ViewData["Message"]
     </h2>
-    <h4 class="text-center my-3">مدیریت کامنت ها</h4>
+    <h4 class="text-center my-3">مدیریت پرداخت ها </h4>
     <div class="row justify-content-between">
         <div class="col-10 col-md-6 col-lg-4">
             <div class="input-group mb-3" style="direction: ltr;">
-                <input type="text" class="form-control" placeholder="قسمتی از کامنت   را وارد کنید">
+                <input type="text" class="form-control" placeholder="قسمتی از پرداختی را وارد کنید">
                 <span class="input-group-text">جستجو</span>
             </div>
-        </div>
-        <div class="col-2 col-md-6 col-lg-4 d-flex flex-column align-items-end">
-            <a asp-action="AddComment" asp-controller="Comment">
-
-                <button class="btn btn-success d-flex justify-content-center align-items-center">
-                    <i class="fas fa-plus text-light"></i>
-                </button>
-            </a>
         </div>
     </div>
     <table class="table table-responsive text-center table-hover table-bordered">
         <thead class="table-secondary">
             <tr>
                 <th>#</th>
-                <th>نام مشتری </th>
-                <th>کامنت</th>
-                <th>عملیات</th>
+                <th>نام و نام خانوادگی کاربر</th>
+                <th>زمان پرداخت</th>
+                <th>تاییدیه پرداخت</th>
+                <th>مبلغ کل پرداخت پرداخت</th>
+
             </tr>
         </thead>
         <tbody>
@@ -42,17 +36,21 @@
             {
                 <tr>
                     <td>@i.Id</td>
-                    <td>@i.Name</td>
-                    <td>@i.Description</td>
-
+                    <td>@i.UserName</td>
+                    <td>@i.TimeSubmit</td>
                     <td>
-                        <a asp-action="Delete" asp-controller="Comment" asp-route-comment_id="@i.Id">
-                            <i class="fas fa-times text-danger mx-1 hoverable_text pointer has_tooltip"
-                               title="حذف کامنت"></i>
+                        @if (@i.Success==true)
+                        {
+                            <i class="fas fa-check text-success  mx-1 hoverable_text pointer has_tooltip"></i>
+                        }
+                        else
+                        {
+                              <i class="fas fa-times text-danger mx-1 hoverable_text pointer has_tooltip"></i>
+                        }
 
-
-                        </a>
+                    
                     </td>
+                    <td>@i.TotalPrice تومان</td>
                 </tr>
 
             }
@@ -76,3 +74,7 @@
         </ul>
     </nav>
 </div>
+
+
+
+

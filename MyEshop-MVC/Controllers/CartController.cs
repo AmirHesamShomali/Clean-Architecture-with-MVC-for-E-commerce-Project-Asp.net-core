@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using MyEshop_Application.Services.Carts.Command;
 using MyEshop_Application.Services.Carts.Queries;
+using MyEshop_Application.Services.pay.Command;
+using MyEshop_Domain.Entities.Cart;
 using MyEshop_Domain.Entities.Products;
 using Services.Carts.Command;
 
@@ -11,12 +13,14 @@ namespace MyEshop_MVC.Controllers
 	{
         private readonly IRemoveCart _RemoveCart;
         private readonly IAddCart _AddCart;
+        private readonly IAddPayment _Addpayment;
 
         private readonly IGetListCarts _GetListCarts;
-        public CartController(IAddCart AddCart, IGetListCarts GetListCarts, IRemoveCart RemoveCart)
+        public CartController(IAddCart AddCart, IGetListCarts GetListCarts, IRemoveCart RemoveCart, IAddPayment Addpayment)
         {
             _AddCart = AddCart;
             _GetListCarts = GetListCarts;
+            _Addpayment = Addpayment;
             _RemoveCart = RemoveCart;
         }
         [Authorize]
@@ -41,6 +45,13 @@ namespace MyEshop_MVC.Controllers
         {
             _RemoveCart.DeleteCartService(cat_id);
             return RedirectToAction("Index");
+        }
+
+        [HttpPost, Authorize]
+        public IActionResult Payment(string EmailName, string SumOfPrice)
+        {
+            _Addpayment.AddPaymentService(EmailName, SumOfPrice);
+            return View("Success");
         }
     }
 }

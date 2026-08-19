@@ -62,5 +62,12 @@ namespace MyEshop_MVC.Areas.Admin.Controllers
 
             return Redirect("/admin/products");
         }
+
+        [HttpPost]
+        public IActionResult SerchProduct(string SearchString)
+        {
+            var resault=_productFacad.GetListProductFilter.GetListProductFilterService(SearchString);
+            return View("Index",resault);
+        }
     }
 }

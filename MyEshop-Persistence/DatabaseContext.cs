@@ -2,6 +2,7 @@
 using MyEshop_Application.Interfaces.Contexts;
 using MyEshop_Domain.Entities.Cart;
 using MyEshop_Domain.Entities.Comment;
+using MyEshop_Domain.Entities.Payment;
 using MyEshop_Domain.Entities.Products;
 using MyEshop_Domain.Entities.Users;
 using System;
@@ -32,6 +33,8 @@ namespace MyEshop_Persistence
 
         public DbSet<Cart> Cart { get; set; }
 
+        public DbSet<Payment> Payments { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>()
@@ -43,10 +46,11 @@ namespace MyEshop_Persistence
             {
                 Id = 1,
                 Name = "هویج",
-                Price=120000,
-                Description="بسیار عالی و درجه یک",
-                CategoryId=1,
-            });
+                Price = 120000,
+                Description = "بسیار عالی و درجه یک",
+                CategoryId = 1,
+                ImagePath = "/asset-page/pics/598b9b14-8dcb-4f3e-886f-367d4b14e51c_product-7.jpg"
+            }); ;
             modelBuilder.Entity<Category>().HasData(new Category()
             {
                 Id=1,

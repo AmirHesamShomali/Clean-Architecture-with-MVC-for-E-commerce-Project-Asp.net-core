@@ -32,7 +32,7 @@
                     <i class="fas fa-grip-vertical fa-2x me-3 pointer" id="dropdownMenuButton1" data-bs-toggle="dropdown"
                        aria-expanded="false"></i>
                     <ul class="dropdown-menu mini_menu" aria-labelledby="dropdownMenuButton1">
-                        <li class="my-2"><a class="dropdown-item d-block text-center">امیر حسام شمالی</a></li>
+                        <li class="my-2"><a class="dropdown-item d-block text-center">@User.Identity.Name</a></li>
                         <li class="my-2 d-flex justify-content-center align-items-center px-2">
                             <i class="fas fa-tachometer-alt"></i>
                             <a class="dropdown-item" href="#">داشبورد</a>
@@ -69,86 +69,43 @@
                     <span class="avatar_box">
                         <img src="~/assets/images/me.jpg" class="w-100 rounded-circle" />
                     </span>
-                    <div class="sidebar_avatar_name text-center hiddenable">امیر حسام شمالی </div>
+                    <div class="sidebar_avatar_name text-center hiddenable">@User.Identity.Name</div>
+                </li>
+                <!-- =================================== -->
+                <li class="py-1 text-start pe-4 sidebar_menu_item" data-section-id="manage_product_section">
+                    <i class="ms-3 icon fas fa-cube text-light"></i>
+                    <a style="display:inline-block" href="/admin/products">
+
+                        <span class="hiddenable no_wrap font_08">مدیریت محصول</span>
+                    </a>
                 </li>
                 <li class="py-1 text-start pe-4 sidebar_menu_item mt-2 active" data-section-id="dashboard_section">
                     <i class="ms-3 icon fas fa-tachometer-alt text-light"></i>
-                    <span class="hiddenable no_wrap font_08">داشبورد</span>
+                    <a style="display:inline-block" href="/admin/Categories">
+                        <span class="hiddenable no_wrap font_08">مدیریت دسته بندی</span>
+                    </a>
                 </li>
                 <!-- =================================== -->
-                <li class="py-1 text-start d-flex justify-content-center no_pointer no_hover ">
-                    <span class="hiddenable no_wrap group_sidebar_title">فروشگاه</span>
-                </li>
-                <li class="py-1 text-start pe-4 sidebar_menu_item" data-section-id="manage_product_category">
-                    <i class="ms-3 icon fas fa-stream text-light"></i>
-                    <span class="hiddenable no_wrap font_08">مدیریت گروه محصول</span>
-                </li>
-                <li class="py-1 text-start pe-4 sidebar_menu_item" data-section-id="manage_product_section">
-                    <i class="ms-3 icon fas fa-cube text-light"></i>
-                    <span class="hiddenable no_wrap font_08">مدیریت محصول</span>
-                </li>
-                <li class="py-1 text-start pe-4 sidebar_menu_item" data-section-id="manage_brand_section">
-                    <i class="ms-3 icon fas fa-copyright text-light"></i>
-                    <span class="hiddenable no_wrap font_08">مدیریت برند ها</span>
-                </li>
-                <li class="py-1 text-start pe-4 sidebar_menu_item" data-section-id="manage_guarantee_section">
-                    <i class="ms-3 icon fab fa-pagelines text-light"></i>
-                    <span class="hiddenable no_wrap font_08">مدیریت گارانتی ها</span>
-                </li>
-                <li class="py-1 text-start pe-4 sidebar_menu_item" data-section-id="manage_color_section">
-                    <i class="ms-3 icon fas fa-palette text-light"></i>
-                    <span class="hiddenable no_wrap font_08">مدیریت رنگ ها</span>
-                </li>
-                <li class="py-1 text-start pe-4 sidebar_menu_item" data-section-id="manage_discount_section">
-                    <i class="ms-3 icon fas fa-percentage text-light"></i>
-                    <span class="hiddenable no_wrap font_08">مدیریت تخفیف ها</span>
-                </li>
-                <!-- =================================== -->
-                <li class="py-1 text-start d-flex justify-content-center no_pointer no_hover ">
-                    <span class="hiddenable no_wrap group_sidebar_title">سفارشات و سبد</span>
-                </li>
-                <li class="py-1 text-start pe-4 sidebar_menu_item" data-section-id="manage_cart_section">
-                    <i class="ms-3 icon fas fa-shopping-basket text-light"></i>
-                    <span class="hiddenable no_wrap font_08">مدیریت سبد ها</span>
-                </li>
                 <li class="py-1 text-start pe-4 sidebar_menu_item" data-section-id="manage_orders_section">
+
                     <i class="ms-3 icon fas fa-luggage-cart text-light"></i>
                     <span class="hiddenable no_wrap font_08">مدیریت سفارشات</span>
                 </li>
-                <li class="py-1 text-start pe-4 sidebar_menu_item" data-section-id="manage_deliveries_section">
-                    <i class="ms-3 icon fas fa-truck-loading text-light"></i>
-                    <span class="hiddenable no_wrap font_08">مدیریت نحوه ارسال</span>
-                </li>
                 <!-- =================================== -->
-
-                <li class="py-1 text-start d-flex justify-content-center no_pointer no_hover ">
-                    <span class="hiddenable no_wrap group_sidebar_title ">کاربران و همکاران</span>
-                </li>
                 <li class="py-1 text-start pe-4 sidebar_menu_item">
+
                     <i class="ms-3 icon fas fa-users text-light"></i>
-                    <div class="hiddenable no_wrap font_08">مشاهده کاربران</div>
-                </li>
-
-
-                <li class="py-1 text-start pe-4 sidebar_menu_item" data-section-id="manage_role_section">
-                    <i class="ms-3 icon fas fa-user-tag text-light"></i>
-                    <span class="hiddenable no_wrap font_08">نقش ها</span>
-                </li>
-                <li class="py-1 text-start pe-4 sidebar_menu_item" data-section-id="manage_permission_section">
-                    <i class="ms-3 icon fas fa-shield-alt text-light"></i>
-                    <span class="hiddenable no_wrap font_08">مجوز ها</span>
+                    <a style="display:inline-block" href="/admin/users">
+                        <div class="hiddenable no_wrap font_08">مشاهده کاربران</div>
+                    </a>
                 </li>
                 <!-- =================================== -->
-                <li class="py-1 text-start d-flex justify-content-center no_pointer no_hover ">
-                    <span class="hiddenable no_wrap group_sidebar_title ">ارتباطات</span>
-                </li>
-                <li class="py-1 text-start pe-4 sidebar_menu_item" data-section-id="manage_question_section">
-                    <i class="ms-3 icon fas fa-question-circle text-light"></i>
-                    <span class="hiddenable no_wrap font_08">سوال ها</span>
-                </li>
                 <li class="py-1 text-start pe-4 sidebar_menu_item" data-section-id="manage_comments_section">
                     <i class="ms-3 icon fas fa-comment text-light"></i>
+                    <a style="display:inline-block" href="/admin/Comment">
+
                     <span class="hiddenable no_wrap font_08">نظرات</span>
+                    </a
                 </li>
             </ul>
         </div>

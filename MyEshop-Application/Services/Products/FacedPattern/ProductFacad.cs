@@ -6,6 +6,7 @@ using MyEshop_Application.Services.Products.Command.AddProduct;
 using MyEshop_Application.Services.Products.Command.AddProducts;
 using MyEshop_Application.Services.Products.Command.EditProduct;
 using MyEshop_Application.Services.Products.Queries.GetCategories;
+using MyEshop_Application.Services.Products.Queries.GetListProductFilters;
 using MyEshop_Application.Services.Products.Queries.GetProducts;
 using System;
 using System.Collections.Generic;
@@ -81,6 +82,16 @@ namespace MyEshop_Application.Services.Products.FacedPattern
             get
             {
                 return (_Editproduct = _Editproduct ?? new EditProduct(_context, _webHostEnvironment));
+            }
+        }
+
+        private GetListProductFilter _GetListProductFilter;
+
+        public GetListProductFilter GetListProductFilter
+        {
+            get
+            {
+                return(_GetListProductFilter=_GetListProductFilter ?? new GetListProductFilter(_context));  
             }
         }
     }

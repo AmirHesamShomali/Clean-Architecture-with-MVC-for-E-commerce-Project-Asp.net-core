@@ -8,6 +8,8 @@ using MyEshop_Application.Services.Carts.Queries;
 using MyEshop_Application.Services.Comments.Commands;
 using MyEshop_Application.Services.Comments.Queries;
 using MyEshop_Application.Services.GetMenutem.Queries;
+using MyEshop_Application.Services.pay.Command;
+using MyEshop_Application.Services.Payment.Queries.IGetListPayment;
 using MyEshop_Application.Services.Products.FacedPattern;
 using MyEshop_Application.Services.Users.Commands.DeleteUsers;
 using MyEshop_Application.Services.Users.Commands.EditUser;
@@ -34,6 +36,8 @@ builder.Services.AddScoped<IAddCart, AddCart>();
 builder.Services.AddScoped<IAddComment,AddComment>();
 builder.Services.AddScoped<IGetListCarts, GetListCarts>();
 builder.Services.AddScoped<IRemoveCart, RemoveCart>();
+builder.Services.AddScoped<IAddPayment, AddPayment>();
+builder.Services.AddScoped<IGetListPayment, GetListPayment>();
 builder.Services.AddScoped<IProductFacad, ProductFacad>();
 builder.Services.AddScoped<IGetMenuItem,GetMenuItem>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>

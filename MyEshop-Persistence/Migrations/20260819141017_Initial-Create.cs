@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -7,7 +8,7 @@
 namespace MyEshop_Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class Initialcreate : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -44,6 +45,22 @@ namespace MyEshop_Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Comments", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Payments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TimeSubmit = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TotalPrice = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Success = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payments", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -167,7 +184,7 @@ namespace MyEshop_Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "CategoryId", "Count", "Description", "ImagePath", "Name", "Price" },
-                values: new object[] { 1, 1, 1, "بسیار عالی و درجه یک", null, "هویج", 120000f });
+                values: new object[] { 1, 1, 1, "بسیار عالی و درجه یک", "/asset-page/pics/598b9b14-8dcb-4f3e-886f-367d4b14e51c_product-7.jpg", "هویج", 120000f });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cart_Userid",
@@ -203,6 +220,9 @@ namespace MyEshop_Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Comments");
+
+            migrationBuilder.DropTable(
+                name: "Payments");
 
             migrationBuilder.DropTable(
                 name: "Products");

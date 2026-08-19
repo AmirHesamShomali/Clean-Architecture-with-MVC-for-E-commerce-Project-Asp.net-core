@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyEshop_Domain.Entities.Cart;
 using MyEshop_Domain.Entities.Comment;
+using MyEshop_Domain.Entities.Payment;
 using MyEshop_Domain.Entities.Products;
 using MyEshop_Domain.Entities.Users;
 using System;
@@ -23,6 +24,9 @@ namespace MyEshop_Application.Interfaces.Contexts
 
          DbSet<Product> Products { get; set; }
          DbSet<Cart> Cart { get; set; }
+
+        DbSet<Payment> Payments { get; set; }
+
 
         DbSet<Comment> Comments { get; set; }
         int SaveChanges(bool acceptAllChangesOnSuccess);

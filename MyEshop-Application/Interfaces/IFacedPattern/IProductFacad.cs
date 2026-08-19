@@ -3,6 +3,7 @@ using MyEshop_Application.Services.Products.Command.AddProduct;
 using MyEshop_Application.Services.Products.Command.AddProducts;
 using MyEshop_Application.Services.Products.Command.EditProduct;
 using MyEshop_Application.Services.Products.Queries.GetCategories;
+using MyEshop_Application.Services.Products.Queries.GetListProductFilters;
 using MyEshop_Application.Services.Products.Queries.GetProducts;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,8 @@ namespace MyEshop_Application.Interfaces.IFacedPattern
         AddProduct Addproduct { get;}
 
         EditProduct Editproduct { get;}
+
+        GetListProductFilter GetListProductFilter { get;}
 
     }
 }

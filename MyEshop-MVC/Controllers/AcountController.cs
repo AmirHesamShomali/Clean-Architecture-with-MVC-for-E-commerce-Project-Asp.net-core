@@ -5,6 +5,7 @@ using MyEshop_Application.Services.Users.Commands.RegisterUser;
 using MyEshop_Domain.Entities.Users;
 using Services.Users.Commands.LoginUser;
 using System.Security.Claims;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 
 namespace MyEshop_MVC.Controllers
 {

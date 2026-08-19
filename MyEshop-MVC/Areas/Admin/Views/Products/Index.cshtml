@@ -8,17 +8,19 @@
 }
 
 
-<div id="manage_user_section" class="manage_user_section main_section">
+<div id="manage_user_section" class="manage_user_section main_section" style="margin-top:80px">
     <h2 text-warning>
         @ViewData["Message"]
     </h2>
     <h4 class="text-center my-3">مدیریت محصولات</h4>
     <div class="row justify-content-between">
         <div class="col-10 col-md-6 col-lg-4">
-            <div class="input-group mb-3" style="direction: ltr;">
-                <input type="text" class="form-control" placeholder="قسمتی از نام   را وارد کنید">
-                <span class="input-group-text">جستجو</span>
-            </div>
+            <form method="post" asp-action="SerchProduct" asp-controller="Products">
+                <div class="input-group mb-3" style="direction: ltr;">
+                    <input type="text" class="form-control" placeholder="قسمتی از نام   را وارد کنید" name="SearchString" id="SearchString">
+                    <button class="input-group-text">جستجو</button>
+                </div>
+            </form>
         </div>
         <div class="col-2 col-md-6 col-lg-4 d-flex flex-column align-items-end">
             <a asp-action="AddProduct" asp-controller="Products">
@@ -51,13 +53,14 @@
                     <td>@i.Description</td>
 
                     <td>
-                        <a asp-action="Edit" asp-controller="Products" asp-route-product_id="@i.Id">>
+                        <a asp-action="Edit" asp-controller="Products" asp-route-product_id="@i.Id">
+                            >
 
                             <i class="fas fa-edit text-warning mx-1 hoverable_text pointer has_tooltip"
                                title="جزئیات و ویرایش کاربر" data-bs-toggle="modal"></i>
                         </a>
                         <a asp-action="Delete" asp-controller="Products" asp-route-product_id="@i.Id">
-                            <i class="fas fa-times text-danger mx-1 hoverable_text pointer has_tooltip" 
+                            <i class="fas fa-times text-danger mx-1 hoverable_text pointer has_tooltip"
                                title="حذف کاربر"></i>
 
 
