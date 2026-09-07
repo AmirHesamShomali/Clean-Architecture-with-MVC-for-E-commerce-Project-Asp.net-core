@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using MyEshop_Application.Interfaces.Contexts;
 using MyEshop_Application.Interfaces.IFacedPattern;
-using MyEshop_Application.Services.Products.Command.Addnewcategory;
 using MyEshop_Application.Services.Products.Command.AddProduct;
 using MyEshop_Application.Services.Products.Command.AddProducts;
 using MyEshop_Application.Services.Products.Command.EditProduct;
-using MyEshop_Application.Services.Products.Queries.GetCategories;
 using MyEshop_Application.Services.Products.Queries.GetListProductFilters;
 using MyEshop_Application.Services.Products.Queries.GetProducts;
 using System;
@@ -25,23 +23,6 @@ namespace MyEshop_Application.Services.Products.FacedPattern
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
-        }
-
-        private Addcategory _addcategory;
-        public Addcategory Addcategory
-        {
-            get {
-                return _addcategory = _addcategory ?? new Addcategory(_context);
-            }
-        }
-
-        private GetCategories _GetCategories;
-
-        public GetCategories GetCategories
-        {
-            get {
-                return _GetCategories = _GetCategories ?? new GetCategories(_context);
-            }
         }
 
         private GetListProducts _GetListProducts;

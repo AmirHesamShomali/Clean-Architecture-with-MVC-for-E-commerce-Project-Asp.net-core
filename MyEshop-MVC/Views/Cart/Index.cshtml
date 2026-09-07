@@ -60,14 +60,24 @@
         </div>
     </div>
     <div class="d-flex justify-content-end">
-        <form method="post" asp-action="Payment" asp-controller="Cart" >
-            <input type="text" id="EmailName" name="EmailName" class="d-none" value="@User.Identity.Name"/>
+        <form method="post" asp-action="Payment" asp-controller="Cart" class="w-100">
+            <input type="text" id="username" name="username" class="d-none" value="@User.Identity.Name" />
             <input type="text" id="SumOfPrice" name="SumOfPrice" class="d-none" value="@ViewBag.SumOfPrice" />
 
-            <button type="submit" class="btn btn-success btn-lg px-4">
-                <i class="bi bi-credit-card me-2"></i>پرداخت و ثبت سفارش
-            </button>
+
+            <div class="mb-3 text-start">
+                <label for="address" class="form-label fw-bold text-dark">آدرس تحویل گیرنده:</label>
+                <textarea id="address" name="address" class="form-control" rows="2" placeholder="لطفاً آدرس دقیق پستی خود را وارد کنید..." required></textarea>
+            </div>
+
+            @if (@ViewBag.SumOfPrice.ToString("N0") != "0")
+            {
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-success btn-lg px-4">
+                        <i class="bi bi-credit-card me-2"></i>پرداخت و ثبت سفارش
+                    </button>
+                </div>
+            }
         </form>
     </div>
 </div>
-

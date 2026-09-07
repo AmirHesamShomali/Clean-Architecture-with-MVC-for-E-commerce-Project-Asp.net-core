@@ -27,23 +27,22 @@ public class RegisterUserService : IRegisterUserService
                 Message = "رمز عبور و تکرار رمز عبور برابر نیست"
             };
         }
-        if (_databaseContext.Users.Any(u => u.Email == request.Email))
+        if (_databaseContext.Users.Any(u => u.phone == request.phone))
         {
             return new ResaultRegisterUserServiceDto()
             {
                 Id = 0,
                 IsSuccess = false,
-                Message = "این ایمیل قبلا ثبت شده است."
+                Message = "این شماره تلفن قبلا ثبت شده است."
             };
         }
 
             var user = new User()
             {
                 FullName = request.FullName,
-                Email = request.Email,
+                phone =request.phone ,
                 Password = request.Password,
-                IsAdmin = false,
-                UserinRoles = null
+                IsAdmin = request.IsAdmin,
         };
 
         _databaseContext.Users.Add(user);

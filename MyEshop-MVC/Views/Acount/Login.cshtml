@@ -8,17 +8,18 @@
 
 <main class="client-page">
         <header><h2> ورود به سایت  </h2></header>
-
         <div class="form-layer">
-
+        <h1 class="text-danger text-center">
+            @ViewBag.Message
+        </h1>
             <form method="post" asp-action="Login" asp-controller="Acount" >
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="input-group">
                     <span class="input-group-addon" id="email-address"><i class="zmdi zmdi-email"></i></span>
-                    <input asp-for="@Model.Email"  type="text" class="form-control" placeholder="ایمیل" aria-describedby="email-address">
+                    <input asp-for="@Model.phone"  type="number" class="form-control" placeholder="شماره تلفن" aria-describedby="phone">
 
                 </div>
-                <span asp-validation-for="@Model.Email" class="text-danger" style="margin-right:120px"></span>
+                <span asp-validation-for="@Model.phone" class="text-danger" style="margin-right:120px"></span>
 
                 <div class="input-group">
                     <span class="input-group-addon" id="password"><i class="zmdi zmdi-lock"></i></span>

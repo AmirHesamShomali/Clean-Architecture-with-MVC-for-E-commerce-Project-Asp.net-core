@@ -1,8 +1,7 @@
-﻿using MyEshop_Application.Services.Products.Command.Addnewcategory;
+﻿
 using MyEshop_Application.Services.Products.Command.AddProduct;
 using MyEshop_Application.Services.Products.Command.AddProducts;
 using MyEshop_Application.Services.Products.Command.EditProduct;
-using MyEshop_Application.Services.Products.Queries.GetCategories;
 using MyEshop_Application.Services.Products.Queries.GetListProductFilters;
 using MyEshop_Application.Services.Products.Queries.GetProducts;
 using System;
@@ -15,9 +14,6 @@ namespace MyEshop_Application.Interfaces.IFacedPattern
 {
     public interface IProductFacad
     {
-        Addcategory Addcategory { get;}
-
-        GetCategories GetCategories {  get;}
 
         GetListProducts GetListProducts { get;}
 

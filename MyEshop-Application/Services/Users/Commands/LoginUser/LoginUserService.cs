@@ -9,9 +9,9 @@ namespace Services.Users.Commands.LoginUser
         {
             _databaseContext = databaseContext;
         }
-        public ResaultLoginUserService GetUserLogin(string Email,string Password)
+        public ResaultLoginUserService GetUserLogin(string phone,string Password)
         {
-            var user = _databaseContext.Users.FirstOrDefault(u => u.Email == Email&&u.Password==Password);
+            var user = _databaseContext.Users.FirstOrDefault(u => u.phone == phone&&u.Password==Password);
             if (user == null)
             {
                 return new ResaultLoginUserService()

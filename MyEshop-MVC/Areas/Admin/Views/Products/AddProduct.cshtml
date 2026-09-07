@@ -30,21 +30,6 @@
                 <span class="text-danger text-center"></span>
             </div>
             <div class="mb-3">
-                <label class="form-label">دسته‌بندی</label>
-                <select class="form-select" asp-for="CategoryId">
-                    <option value=""> انتخاب کنید </option>
-
-                    @if (ViewBag.Categories != null)
-                    {
-                        @foreach (var cat in ViewBag.Categories)
-                        {
-                            <option value="@cat.Id">@cat.Name</option>
-                        }
-                    }
-
-                </select>
-            </div>
-            <div class="mb-3">
                 <label class="form-label">عکس محصول</label>
                 <input type="file" class="form-control" name="imagefile">
                 <span class="text-danger text-center"></span>

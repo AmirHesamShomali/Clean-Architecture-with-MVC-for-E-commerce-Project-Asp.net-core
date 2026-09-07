@@ -1,6 +1,5 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using MyEshop_Application.Services.Users.Commands.RegisterUser;
-@using MyEshop_Application.Services.Users.Queries.GetRoles;
 @model RequestRegisterService;
 @{
     ViewData["Title"] = "Create";
@@ -16,9 +15,9 @@
                 <span asp-validation-for="@Model.FullName" class="text-danger text-center"></span>
             </div>
             <div class="mb-3">
-                <label class="form-label">ایمیل</label>
-                <input type="email" class="form-control" asp-for="@Model.Email" placeholder="example@mail.com">
-                <span asp-validation-for="@Model.Email" class="text-danger text-center"></span>
+                <label class="form-label">تلفن</label>
+                <input type="text" class="form-control" asp-for="@Model.phone" placeholder="09111111111">
+                <span asp-validation-for="@Model.phone" class="text-danger text-center"></span>
             </div>
             <div class="mb-3">
                 <label class="form-label">رمز عبور</label>
@@ -30,13 +29,11 @@
                 <input type="password" class="form-control" asp-for="@Model.Repassword">
                 <span asp-validation-for="@Model.Repassword" class="text-danger text-center"></span>
             </div>
-@*             <div class="mb-3">
-                <label class="form-label">انتخاب نقش</label>
-                <!-- asp-for باید روی خود select باشد و asp-items باید روی تگ select باشد -->
-                <select class="form-select" asp-for="roles" asp-items="@(ViewBag.Roles as SelectList)" multiple>
-                    <option value="">-- نقش‌ها را انتخاب کنید --</option>
-                </select>
-            </div> *@
+            <div class="mb-3 form-check">
+                <input asp-for="IsAdmin" class="form-check-input" type="checkbox" id="isAdminCheck">
+                <label class="form-check-label" for="isAdminCheck">دسترسی ادمین (Admin)</label>
+            </div>
+
 
             <button type="submit" class="btn btn-primary w-100 mt-3">ثبت اطلاعات</button>
 

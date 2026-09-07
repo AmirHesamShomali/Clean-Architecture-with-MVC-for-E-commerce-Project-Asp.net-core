@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyEshop_Application.Interfaces.Contexts;
 using MyEshop_Application.Interfaces.IFacedPattern;
-using MyEshop_Application.Services.Products.Queries.GetCategories;
 using MyEshop_Domain.Entities.Products;
 
 namespace MyEshop_MVC.Areas.Admin.Controllers
@@ -27,7 +26,7 @@ namespace MyEshop_MVC.Areas.Admin.Controllers
         public IActionResult AddProduct()
         {
            
-            ViewBag.Categories = _context.Category.Where(p => p.parentcategory_id == null).ToList();
+   
             return View();  
         }
 
@@ -37,8 +36,6 @@ namespace MyEshop_MVC.Areas.Admin.Controllers
             var resault =await  _productFacad.Addproduct.AddProductService(product, imagefile);
             if (!ModelState.IsValid)
             {
-
-                ViewBag.Categories = _context.Category.Where(p => p.parentcategory_id == null).ToList();
                 return View(product);
             }
             return Redirect ("/admin/products");

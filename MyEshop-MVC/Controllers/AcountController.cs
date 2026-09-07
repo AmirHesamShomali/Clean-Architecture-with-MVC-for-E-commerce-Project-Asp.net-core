@@ -53,13 +53,15 @@ namespace MyEshop_MVC.Controllers
             {
                 return View(requestlogin);
             }
-            var resault = _loginUserService.GetUserLogin(requestlogin.Email, requestlogin.Password);
+            var resault = _loginUserService.GetUserLogin(requestlogin.phone, requestlogin.Password);
             if (resault.Success == true)
             {
                 var claims = new List<Claim>
                 {
             new Claim(ClaimTypes.NameIdentifier, resault.user.Id.ToString()),
-            new Claim(ClaimTypes.Name, resault.user.Email),
+            new Claim(ClaimTypes.Name, resault.user.FullName),
+            new Claim(ClaimTypes.MobilePhone, resault.user.phone),
+
             new Claim("IsAdmin", resault.user.IsAdmin.ToString())
                };
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -78,6 +80,7 @@ namespace MyEshop_MVC.Controllers
 
                 return Redirect("/");
             }
+            ViewBag.Message = resault.Message;
             return View();
         }
 

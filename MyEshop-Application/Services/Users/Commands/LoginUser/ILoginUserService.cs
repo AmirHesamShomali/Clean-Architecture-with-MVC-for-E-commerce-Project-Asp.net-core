@@ -8,6 +8,6 @@ namespace Services.Users.Commands.LoginUser
 {
     public interface ILoginUserService
     {
-        ResaultLoginUserService GetUserLogin(string Email, string Password);
+        ResaultLoginUserService GetUserLogin(string phone, string Password);
     }
 }

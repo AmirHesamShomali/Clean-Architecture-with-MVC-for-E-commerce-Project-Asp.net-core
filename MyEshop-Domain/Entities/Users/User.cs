@@ -12,11 +12,10 @@ namespace MyEshop_Domain.Entities.Users
 
         public string FullName { get; set; }
 
-        public string Email { get; set; }
+        public string phone { get; set; }
 
         public string Password { get; set; }
 
         public bool IsAdmin { get; set; }
-        public ICollection<UserinRole>? UserinRoles { get; set; }
     }
 }

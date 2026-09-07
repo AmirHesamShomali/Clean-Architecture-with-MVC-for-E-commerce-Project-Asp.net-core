@@ -1,6 +1,36 @@
-﻿@{
+﻿@using MyEshop_Domain.Entities.Order
+@model RequestOrder
+@{
     ViewData["Title"] = "Privacy Policy";
 }
-<h1>@ViewData["Title"]</h1>
+<div class="container mt-5 mb-5" dir="rtl">
+    <div class="row justify-content-center">
+        <div class="col-md-6 border p-4 shadow-sm rounded">
+            <h2 class="mb-4 text-center text-primary">ثبت مشخصات محصول</h2>
 
-<p>Use this page to detail your site's privacy policy.</p>
+            <form asp-action="Privacy" asp-controller="Home" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label">نام کاربر</label>
+                    <input type="text" asp-for="User_Name" class="form-control" readonly>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">شماره تلفن</label>
+                    <input type="tel" asp-for="Phone" class="form-control text-right" readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">نام محصول <span class="text-danger">*</span></label>
+                    <input asp-for="Product_Name" type="text" class="form-control" placeholder="نام محصول را وارد کنید" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">عکس محصول</label>
+                    <input type="file" class="form-control" name="imagefile">
+                    <span class="text-danger text-center"></span>
+                </div>
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary w-100">ثبت اطلاعات</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

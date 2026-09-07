@@ -8,10 +8,11 @@ namespace MyEshop_Application.Services.Users.Commands.RegisterUser
         [Required(ErrorMessage = "لطفا این فیلد پر شود")]
         [MinLength(2)]
         public string FullName { get; set; }
-
-        [EmailAddress(ErrorMessage = "فرمت ایمیل رعایت شود")]
-        [Required(ErrorMessage = "لطفا این فیلد پر شود")]
-        public string Email { get; set; }
+        [Required(ErrorMessage = "لطفا شماره موبایل را وارد کنید")]
+        [StringLength(11, MinimumLength = 11, ErrorMessage = "شماره موبایل باید دقیقاً 11 رقم باشد")]
+        [RegularExpression(@"^09\d{9}$", ErrorMessage = "فرمت شماره موبایل صحیح نیست (مثال: 09120000000)")]
+        public string Phone { get; set; }
+        public string phone { get; set; }
 
         [Required(ErrorMessage = "لطفا این فیلد پر شود")]
         [DataType(DataType.Password)]
@@ -23,5 +24,10 @@ namespace MyEshop_Application.Services.Users.Commands.RegisterUser
         [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "پسورد و تکرار آن با هم مطابقت ندارند.")]
         public string Repassword { get; set; }
-    }
+
+
+
+        public bool IsAdmin { get; set; } = false;
+
+	}
 }

@@ -7,7 +7,9 @@ using MyEshop_Application.Services.Carts.Command;
 using MyEshop_Application.Services.Carts.Queries;
 using MyEshop_Application.Services.Comments.Commands;
 using MyEshop_Application.Services.Comments.Queries;
-using MyEshop_Application.Services.GetMenutem.Queries;
+using MyEshop_Application.Services.Orders.Command.AddProducttoCart;
+using MyEshop_Application.Services.Orders.Command.Deleteorder;
+using MyEshop_Application.Services.Orders.Queries.IGetListOrder;
 using MyEshop_Application.Services.pay.Command;
 using MyEshop_Application.Services.Payment.Queries.IGetListPayment;
 using MyEshop_Application.Services.Products.FacedPattern;
@@ -15,12 +17,12 @@ using MyEshop_Application.Services.Users.Commands.DeleteUsers;
 using MyEshop_Application.Services.Users.Commands.EditUser;
 using MyEshop_Application.Services.Users.Commands.RegisterUser;
 using MyEshop_Application.Services.Users.Queries.GetListUsers;
-using MyEshop_Application.Services.Users.Queries.GetRoles;
+using MyEshop_Domain.Entities.Order;
 using MyEshop_Persistence;
 using Services.Carts.Command;
+using Services.Orders.Command.AddOrder;
 using Services.Users.Commands.LoginUser;
 using static Services.Carts.Command.AddCart;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -37,9 +39,12 @@ builder.Services.AddScoped<IAddComment,AddComment>();
 builder.Services.AddScoped<IGetListCarts, GetListCarts>();
 builder.Services.AddScoped<IRemoveCart, RemoveCart>();
 builder.Services.AddScoped<IAddPayment, AddPayment>();
+builder.Services.AddScoped<IDeleteOrder, DeleteOrder>();
+builder.Services.AddScoped<IGetListOrders,GetListOrders>();
+builder.Services.AddScoped<IAddOrder,AddOrder>();
+builder.Services.AddScoped<IAddProducttoCart, AddProducttoCart>();
 builder.Services.AddScoped<IGetListPayment, GetListPayment>();
 builder.Services.AddScoped<IProductFacad, ProductFacad>();
-builder.Services.AddScoped<IGetMenuItem,GetMenuItem>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
 {
     option.LoginPath = "/Acount/Login";
@@ -54,7 +59,7 @@ builder.Services.AddAuthorization(options =>
 });
 builder.Services.AddDbContext<DatabaseContext>(option =>
 {
-    option.UseSqlServer("Data Source=.;Initial Catalog=My_EshopCore_DB;TrustServerCertificate=True;Integrated security=true");
+    option.UseSqlServer("Data Source=.;Initial Catalog=Car_EshopCore_DB;TrustServerCertificate=True;Integrated security=true");
 });
 
 

@@ -6,8 +6,6 @@ using MyEshop_Application.Services.Users.Commands.DeleteUsers;
 using MyEshop_Application.Services.Users.Commands.EditUser;
 using MyEshop_Application.Services.Users.Commands.RegisterUser;
 using MyEshop_Application.Services.Users.Queries.GetListUsers;
-using MyEshop_Application.Services.Users.Queries.GetRoles;
-
 namespace EndPointStore.Site.Areas.Admin.Controllers
 {
     [Authorize(Policy = "AdminOnly")]

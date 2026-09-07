@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyEshop_Domain.Entities.Cart;
 using MyEshop_Domain.Entities.Comment;
+using MyEshop_Domain.Entities.Order;
 using MyEshop_Domain.Entities.Payment;
 using MyEshop_Domain.Entities.Products;
 using MyEshop_Domain.Entities.Users;
@@ -14,26 +15,21 @@ namespace MyEshop_Application.Interfaces.Contexts
 {
     public interface IDatabaseContext
     {
-         DbSet<User> Users { get; set; }
-
-         DbSet<Role> Roles { get; set; }
-
-         DbSet<UserinRole> UserinRoles { get; set; }
-
-         DbSet<Category> Category { get; set; }
-
-         DbSet<Product> Products { get; set; }
-         DbSet<Cart> Cart { get; set; }
+        DbSet<User> Users { get; set; }
+        DbSet<Product> Products { get; set; }
+        DbSet<Cart> Cart { get; set; }
 
         DbSet<Payment> Payments { get; set; }
+
+        DbSet<Order> Orders { get; set; }
 
 
         DbSet<Comment> Comments { get; set; }
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();
-        Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess,CancellationToken cancellationToken);
+        Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken);
 
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken=new CancellationToken());
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken());
 
 
     }

@@ -8,25 +8,31 @@
 }
 <div class="container mt-5">
     <div class="card shadow-sm p-4" style="max-width: 500px; margin: auto;">
-        <h3 class="mb-4 text-center">ثبت‌نام کاربر</h3>
+        <h3 class="mb-4 text-center">ویرایش‌ کاربر</h3>
         <form method="post" asp-action="Edit" asp-controller="Users">
             <div class="mb-3">
                 <label class="form-label">نام و نام خانوادگی</label>
-                <input type="text" class="form-control" asp-for="@Model.user.FullName">
-                <span  class="text-danger text-center"></span>
+                <input type="text" class="form-control" asp-for="user.FullName">
+                <span class="text-danger"></span>
             </div>
-           
+
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" asp-for="user.IsAdmin" id="adminCheck">
+                <label class="form-check-label" for="adminCheck">دسترسی ادمین</label>
+            </div>
+
             <button type="submit" class="btn btn-primary w-100 mt-3">ثبت اطلاعات</button>
 
             <h1 class="text-danger text-center">
                 @ViewBag.Message
             </h1>
-<div class="d-none" >
-    <input asp-for="@Model.user.Id" />
-    <input asp-for="@Model.user.Email" />
-    <input asp-for="@Model.user.Password" />
+            <div class="d-none">
+                <input asp-for="@Model.user.Id" />
+                <input asp-for="@Model.user.phone" />
+                <input asp-for="@Model.user.Password" />
 
-</div>
+            </div>
         </form>
 
     </div>
+</div>

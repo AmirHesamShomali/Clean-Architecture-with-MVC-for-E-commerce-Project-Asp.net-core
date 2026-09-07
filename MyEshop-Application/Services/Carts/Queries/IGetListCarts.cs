@@ -11,7 +11,7 @@ namespace MyEshop_Application.Services.Carts.Queries
 {
     public interface IGetListCarts
     {
-		ResaultListCart GetListService(string Emailuser);
+		ResaultListCart GetListService(string phone);
     }
 
     public class GetListCarts : IGetListCarts
@@ -22,9 +22,9 @@ namespace MyEshop_Application.Services.Carts.Queries
         {
             _context = context;
         }
-        public ResaultListCart GetListService(string Emailuser)
+        public ResaultListCart GetListService(string phone)
         {
-            var user=_context.Users.FirstOrDefault(u=>u.Email== Emailuser);
+            var user=_context.Users.FirstOrDefault(u=>u.phone== phone);
 			var Carts = _context.Cart.Where(u => u.Userid == user.Id).ToList();
             var sumofprice=_context.Cart.Where(u=>u.Userid==user.Id).Sum(c=>c.Price);
 			return new ResaultListCart()

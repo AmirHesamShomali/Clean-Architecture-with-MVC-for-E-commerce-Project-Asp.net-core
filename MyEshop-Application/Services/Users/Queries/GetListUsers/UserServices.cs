@@ -21,14 +21,14 @@ namespace MyEshop_Application.Services.Users.Queries.GetListUsers
             var users = _context.Users.AsQueryable();
             if (!string.IsNullOrWhiteSpace(request.searchkey))
             {
-                users = users.Where(p => p.FullName.Contains(request.searchkey) && p.Email.Contains(request.searchkey));
+                users = users.Where(p => p.FullName.Contains(request.searchkey));
             }
             var rowcount = 0;
             var resault= users.ToPaged(request.page, 20, out rowcount).Select(u=>new UserDto()
             {
                 Id= u.Id,
                 FullName= u.FullName,
-                Email= u.Email,
+                phone= u.phone,
             }).ToList();
 
             return new ResaultUserServices()

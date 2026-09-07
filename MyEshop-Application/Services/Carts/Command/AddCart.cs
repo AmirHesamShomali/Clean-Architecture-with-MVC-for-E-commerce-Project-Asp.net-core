@@ -10,10 +10,9 @@ namespace Services.Carts.Command
         {
             _context = context;
         }
-
-        public ResaultCart AddCartService(int product_id, int quantity,string Emailuser)
+        public ResaultCart AddCartService(int product_id, int quantity,string phone)
         {
-            var user=_context.Users.FirstOrDefault(u=>u.Email== Emailuser);
+            var user=_context.Users.FirstOrDefault(u=>u.phone== phone);
             var product = _context.Products.FirstOrDefault(p => p.Id == product_id);
             var cart = new Cart()
             {

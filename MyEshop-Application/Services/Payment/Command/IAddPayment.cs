@@ -10,7 +10,7 @@ namespace MyEshop_Application.Services.pay.Command
 {
     public interface IAddPayment
     {
-        bool AddPaymentService(string UserName, string TotalPrice);
+        bool AddPaymentService(string UserName, string TotalPrice , string address);
     }
 
     public class AddPayment : IAddPayment
@@ -21,10 +21,11 @@ namespace MyEshop_Application.Services.pay.Command
         {
             _context = context;
         }
-        public bool AddPaymentService(string UserName,string TotalPrice)
+        public bool AddPaymentService(string UserName,string TotalPrice, string address)
         {
             var NewPayment = new MyEshop_Domain.Entities.Payment.Payment
             {
+                address=address,
                 UserName = UserName,
                 TotalPrice=TotalPrice,
                 TimeSubmit = DateTime.Now,

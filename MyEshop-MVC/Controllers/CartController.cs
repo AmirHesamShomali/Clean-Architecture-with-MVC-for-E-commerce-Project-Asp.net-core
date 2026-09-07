@@ -6,6 +6,7 @@ using MyEshop_Application.Services.pay.Command;
 using MyEshop_Domain.Entities.Cart;
 using MyEshop_Domain.Entities.Products;
 using Services.Carts.Command;
+using System.Security.Claims;
 
 namespace MyEshop_MVC.Controllers
 {
@@ -26,17 +27,18 @@ namespace MyEshop_MVC.Controllers
         [Authorize]
         public IActionResult Index()
         {
-            var email = User.Identity.Name;
-            var result = _GetListCarts.GetListService(email);
+            var phoneClaim = User.FindFirst(ClaimTypes.MobilePhone);
+            string phone = phoneClaim?.Value;
+            var result = _GetListCarts.GetListService(phone);
             ViewBag.SumOfPrice = result.SumOfPrice;
             return View(result.Carts);
         }
 
         [Authorize]
         [HttpPost]
-        public IActionResult AddToCart(int product_id, int quantity, string Emailuser)
+        public IActionResult AddToCart(int product_id, int quantity, string phone)
         {
-            _AddCart.AddCartService(product_id, quantity, Emailuser);
+            _AddCart.AddCartService(product_id, quantity, phone);
             return RedirectToAction("Index");
         }
 
@@ -48,9 +50,10 @@ namespace MyEshop_MVC.Controllers
         }
 
         [HttpPost, Authorize]
-        public IActionResult Payment(string EmailName, string SumOfPrice)
+        public IActionResult Payment(string username, string SumOfPrice, string address)
         {
-            _Addpayment.AddPaymentService(EmailName, SumOfPrice);
+            var resault=_Addpayment.AddPaymentService(username, SumOfPrice,address);
+
             return View("Success");
         }
     }

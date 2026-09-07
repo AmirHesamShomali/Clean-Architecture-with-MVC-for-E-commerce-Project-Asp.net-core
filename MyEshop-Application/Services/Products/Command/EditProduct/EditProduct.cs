@@ -41,7 +41,7 @@ namespace MyEshop_Application.Services.Products.Command.EditProduct
                     Description = product.Description,
                     Price = product.Price,
                     ImagePath = await SaveFileAsync(imagefile),
-                    CategoryId = product.CategoryId,
+                    
                 };
                 _context.Products.Add(newproduct);
                  _context.SaveChanges(); 

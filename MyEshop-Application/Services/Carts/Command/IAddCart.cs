@@ -10,7 +10,7 @@ namespace Services.Carts.Command
 {
     public interface IAddCart
     {
-        ResaultCart AddCartService(int product_id,int quantity, string Emailuser);
+        ResaultCart AddCartService(int product_id,int quantity, string phone);
 
     }
 }

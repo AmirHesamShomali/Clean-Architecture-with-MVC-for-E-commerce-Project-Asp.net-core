@@ -18,9 +18,9 @@
         <nav class="navbar fixed-top navbar-dark bg-secondary top_navbar py-0">
             <div class="container-fluid h-100 pe-0">
 
-                <div class="right_content h-100 py-1 bg-dark">
+                 <div class="right_content h-100 py-1 bg-dark">
                     <a class="navbar-brand h-100" href="/">
-                        <img src="~/assets/images/me.jpg" class="h-100" />
+                        <img src="~/assets-page/pics/bg_1.jpg" class="h-100" />
                     </a>
                     <div class="form-check form-switch mx-4 d-none d-md-block">
                         <input id="handle_toggle_sidemenu" class="form-check-input pointer" type="checkbox"
@@ -31,6 +31,8 @@
                 <div class="left_content d-flex flex-row-reverse">
                     <i class="fas fa-grip-vertical fa-2x me-3 pointer" id="dropdownMenuButton1" data-bs-toggle="dropdown"
                        aria-expanded="false"></i>
+
+      
                     <ul class="dropdown-menu mini_menu" aria-labelledby="dropdownMenuButton1">
                         <li class="my-2"><a class="dropdown-item d-block text-center">@User.Identity.Name</a></li>
                         <li class="my-2 d-flex justify-content-center align-items-center px-2">
@@ -67,42 +69,45 @@
             <ul class="p-0 m-0">
                 <li class="pt-1 pb-2 d-flex flex-column avatar_li position-relative">
                     <span class="avatar_box">
-                        <img src="~/assets/images/me.jpg" class="w-100 rounded-circle" />
+                        <img src="~/assets-page/pics/user.png" class="w-100 rounded-circle" />
                     </span>
                     <div class="sidebar_avatar_name text-center hiddenable">@User.Identity.Name</div>
                 </li>
                 <!-- =================================== -->
                 <li class="py-1 text-start pe-4 sidebar_menu_item" data-section-id="manage_product_section">
                     <i class="ms-3 icon fas fa-cube text-light"></i>
-                    <a style="display:inline-block" href="/admin/products">
+                    <a style="display:inline-block; text-decoration:none" href="/admin/products">
 
                         <span class="hiddenable no_wrap font_08">مدیریت محصول</span>
                     </a>
                 </li>
-                <li class="py-1 text-start pe-4 sidebar_menu_item mt-2 active" data-section-id="dashboard_section">
-                    <i class="ms-3 icon fas fa-tachometer-alt text-light"></i>
-                    <a style="display:inline-block" href="/admin/Categories">
-                        <span class="hiddenable no_wrap font_08">مدیریت دسته بندی</span>
-                    </a>
-                </li>
                 <!-- =================================== -->
                 <li class="py-1 text-start pe-4 sidebar_menu_item" data-section-id="manage_orders_section">
-
                     <i class="ms-3 icon fas fa-luggage-cart text-light"></i>
-                    <span class="hiddenable no_wrap font_08">مدیریت سفارشات</span>
+                    <a style="display:inline-block; text-decoration:none" href="/admin/order">
+                    <div class="hiddenable no_wrap font_08">مدیریت سفارشات</div>
+                    </a>
                 </li>
                 <!-- =================================== -->
                 <li class="py-1 text-start pe-4 sidebar_menu_item">
 
                     <i class="ms-3 icon fas fa-users text-light"></i>
-                    <a style="display:inline-block" href="/admin/users">
+                    <a style="display:inline-block; text-decoration:none" href="/admin/users">
                         <div class="hiddenable no_wrap font_08">مشاهده کاربران</div>
+                    </a>
+                </li>
+                 <!-- =================================== -->
+                <li class="py-1 text-start pe-4 sidebar_menu_item">
+                    
+                    <i class="ms-3 icon fas fa-money-check-alt text-light"></i>
+                    <a style="display:inline-block; text-decoration:none" href="/admin/payment">
+                        <div class="hiddenable no_wrap font_08">مدیریت  پرداخت ها </div>
                     </a>
                 </li>
                 <!-- =================================== -->
                 <li class="py-1 text-start pe-4 sidebar_menu_item" data-section-id="manage_comments_section">
                     <i class="ms-3 icon fas fa-comment text-light"></i>
-                    <a style="display:inline-block" href="/admin/Comment">
+                    <a style="display:inline-block; text-decoration:none" href="/admin/Comment">
 
                     <span class="hiddenable no_wrap font_08">نظرات</span>
                     </a

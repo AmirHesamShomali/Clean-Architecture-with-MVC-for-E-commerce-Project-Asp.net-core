@@ -1,7 +1,10 @@
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MyEshop_Application.Interfaces.Contexts;
+using MyEshop_Domain.Entities.Order;
 using MyEshop_MVC.Models;
+using Services.Orders.Command.AddOrder;
 using System.Diagnostics;
 
 namespace MyEshop_MVC.Controllers
@@ -12,10 +15,12 @@ namespace MyEshop_MVC.Controllers
 
         private readonly IDatabaseContext _databaseContext;
 
-        public HomeController(ILogger<HomeController> logger, IDatabaseContext databaseContext)
+        private readonly IAddOrder _addOrder;
+        public HomeController(ILogger<HomeController> logger, IDatabaseContext databaseContext, IAddOrder addOrder)
         {
             _logger = logger;
             _databaseContext = databaseContext;
+            _addOrder = addOrder;
         }
 
         public IActionResult Index()
@@ -31,12 +36,28 @@ namespace MyEshop_MVC.Controllers
             ViewBag.Comments=_databaseContext.Comments.ToList();
             return View(products);
         }
-
+        [Authorize]
         public IActionResult Privacy()
         {
-            
-            return View();
+            var model = new RequestOrder();
+            model.User_Name = User.Identity.Name;
+            model.Phone = User.FindFirst(System.Security.Claims.ClaimTypes.MobilePhone)?.Value;
+
+            return View(model);
         }
+
+
+        [HttpPost]
+        [Authorize]
+
+        public async Task<IActionResult> Privacy(RequestOrder order,IFormFile imagefile)
+        {
+            var resault=await _addOrder.addOrderservice(order, imagefile);
+            
+            return View("Success");
+        }
+
+
 
 
         public IActionResult Ditails(int productid)
