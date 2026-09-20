@@ -56,21 +56,15 @@ namespace MyEshop_Persistence
                 Id=1,
                 Name="سبزیجات"
             });
-           
 
-            modelBuilder.Entity<Role>().HasData(new Role()
-           {
-               Id = 1,
-               Name = "Admin",
-           },new Role
-           {
-               Id=2,
-               Name="Operator" 
-           },new Role
-           {
-               Id=3,
-               Name="Customer"
-           });
+
+            modelBuilder.Entity<User>().HasData(new User()
+            {
+                Id = 1,
+                FullName = "امیر حسام شمالی",
+                Email = "amirhesamshomaliq@gmail.com",
+                Password = "123"
+            });
         }
     }
 }

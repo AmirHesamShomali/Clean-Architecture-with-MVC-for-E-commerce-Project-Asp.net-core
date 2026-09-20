@@ -24,6 +24,7 @@ namespace MyEshop_Application.Services.Users.Commands.EditUser
                 NewUser.FullName = resaultEdit.user.FullName;
                 NewUser.Email = resaultEdit.user.Email;
                 NewUser.Password = resaultEdit.user.Password;
+                NewUser.IsAdmin = resaultEdit.user.IsAdmin;
                 _databaseContext.Users.Add(NewUser);
                 _databaseContext.SaveChanges(); 
                 return new ResaultEditUserService()
